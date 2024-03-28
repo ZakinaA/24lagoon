@@ -38,9 +38,9 @@
                         {              
                             out.println("<tr><td>");
                             out.println(f.getId());
-                            out.println("</a></td>");
+                            out.println("</td>");
 
-                            out.println("<td><td>");
+                            out.println("<td>");
                             out.println(f.getLibelle());
                             out.println("</td>");;
                         }
