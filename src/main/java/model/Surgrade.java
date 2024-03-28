@@ -10,16 +10,15 @@ import java.util.ArrayList;
  *
  * @author ts1sio
  */
-public class Grade {
+public class Surgrade {
     private int id;
     private String libelle ;
-    private ArrayList<Pompier> lesPompiers;
-    private Surgrade UnSurgrade;
+    private ArrayList<Grade> lesGrades;
 
-    public Grade() {
+    public Surgrade() {
     }
 
-    public Grade(int id, String libelle) {
+    public Surgrade(int id, String libelle) {
         this.id = id;
         this.libelle = libelle;
     }
@@ -40,26 +39,19 @@ public class Grade {
         this.libelle = libelle;
     }
 
-    public ArrayList<Pompier> getLesPompiers() {
-        return lesPompiers;
+    public ArrayList<Grade> getLesGrades() {
+        return lesGrades;
     }
 
-    public void setLesPompiers(ArrayList<Pompier> lesPompiers) {
-        this.lesPompiers = lesPompiers;
+    public void setLesGrades(ArrayList<Grade> lesGrades) {
+        this.lesGrades = lesGrades;
     }
     
-    public void addUnPompier(Pompier unPompier){
-        if (lesPompiers == null){
-            lesPompiers = new ArrayList<Pompier>();
+    public void addUnGrade(Grade unGrade){
+        if (lesGrades == null){
+            lesGrades = new ArrayList<Grade>();
         }
-        lesPompiers.add(unPompier);
+        lesGrades.add(unGrade);
     }
 
-    public Surgrade getUnSurgrade() {
-        return UnSurgrade;
-    }
-
-    public void setUnSurgrade(Surgrade UnSurgrade) {
-        this.UnSurgrade = UnSurgrade;
-    }
 }

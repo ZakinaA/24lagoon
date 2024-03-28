@@ -13,6 +13,12 @@
         <servlet-name>ServletFonction</servlet-name>
         <servlet-class>servlet.ServletFonction</servlet-class>
     </servlet>
+  
+    <servlet>
+        <servlet-name>ServletGrade</servlet-name>
+        <servlet-class>servlet.ServletGrade</servlet-class>
+    </servlet>
+  
     <servlet>
         <servlet-name>ServletCaserne</servlet-name>
         <servlet-class>servlet.ServletCasernes</servlet-class>
@@ -38,6 +44,11 @@
         <url-pattern>/ServletFonction/lister</url-pattern>
     </servlet-mapping>
     
+     <servlet-mapping>
+        <servlet-name>ServletGrade</servlet-name>
+        <url-pattern>/ServletGrade/lister</url-pattern>
+    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>ServletCaserne</servlet-name>
         <url-pattern>/ServletCasernes/lister</url-pattern>

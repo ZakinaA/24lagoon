@@ -1,11 +1,11 @@
 <%-- 
-    Document   : listerFonctions
-    Created on : 28 mars 2024, 13:10:27
+    Document   : listerGrade
+    Created on : 28 mars 2024, 15:04:15
     Author     : ts1sio
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="model.Fonction"%>
+<%@page import="model.Grade"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
@@ -19,30 +19,35 @@
         <title>APPLICATION DE GESTION SDIS CALVADOS</title>
     </head>
     <body>
-        <h1>Liste des fonctions</h1>
+        <h1>Liste des grades</h1>
          <%
-            ArrayList<Fonction> lesFonctions = (ArrayList)request.getAttribute("fLesFonctions");
+            ArrayList<Grade> lesGrades = (ArrayList)request.getAttribute("gLesGrades");
          %>
          
           <table>  
             <thead>
                 <tr>             
                     <th>id</th>
-                    <th>Libelle</th>         
+                    <th>Libelle</th>    
+                    <th>Surgrade</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <%
-                        for (Fonction f : lesFonctions)
+                        for (Grade g : lesGrades)
                         {              
                             out.println("<tr><td>");
-                            out.println(f.getId());
+                            out.println(g.getId());
                             out.println("</td>");
 
                             out.println("<td>");
-                            out.println(f.getLibelle());
+                            out.println(g.getLibelle());
                             out.println("</td>");;
+                            
+                            out.println("<td>");
+                            out.println(g.getUnSurgrade().getLibelle());
+                            out.println("</td>");
                         }
                     %>
                 </tr>
