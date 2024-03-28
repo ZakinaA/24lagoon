@@ -4,37 +4,62 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ts1sio
  */
 public class Grade {
     private int id;
-    private String nom ;
+    private String libelle ;
+    private ArrayList<Pompier> lesPompiers;
+    private Surgrade UnSurgrade;
 
     public Grade() {
     }
 
-    public Grade(int id, String nom) {
+    public Grade(int id, String libelle) {
         this.id = id;
-        this.nom = nom;
+        this.libelle = libelle;
     }
 
     public int getId() {
         return id;
     }
 
+    public String getLibelle() {
+        return libelle;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public ArrayList<Pompier> getLesPompiers() {
+        return lesPompiers;
+    }
+
+    public void setLesPompiers(ArrayList<Pompier> lesPompiers) {
+        this.lesPompiers = lesPompiers;
     }
     
-    
+    public void addUnPompier(Pompier unPompier){
+        if (lesPompiers == null){
+            lesPompiers = new ArrayList<Pompier>();
+        }
+        lesPompiers.add(unPompier);
+    }
+
+    public Surgrade getUnSurgrade() {
+        return UnSurgrade;
+    }
+
+    public void setUnSurgrade(Surgrade UnSurgrade) {
+        this.UnSurgrade = UnSurgrade;
+    }
 }
