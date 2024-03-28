@@ -51,7 +51,7 @@
 
     <servlet-mapping>
         <servlet-name>ServletCaserne</servlet-name>
-        <url-pattern>/ServletCasernes/lister</url-pattern>
+        <url-pattern>/ServletCaserne/lister</url-pattern>
     </servlet-mapping>
     
     <session-config>
