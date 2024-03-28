@@ -4,8 +4,8 @@
  */
 package database;
 
-import static database.DaoPompier.requeteSql;
-import static database.DaoPompier.resultatRequete;
+import static database.DaoCaserne.requeteSql;
+import static database.DaoCaserne.resultatRequete;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,6 +35,10 @@ public class DaoCaserne {
                 Caserne c = new Caserne();
                     c.setId(resultatRequete.getInt("cas_id"));
                     c.setNom(resultatRequete.getString("cas_nom"));
+                    c.setRue(resultatRequete.getString("cas_rue"));
+                    c.setCopos(resultatRequete.getInt("cas_copos"));
+                    c.setVille(resultatRequete.getString("cas_ville"));
+                    
 
                 lesCasernes.add(c);
             }
@@ -42,7 +46,7 @@ public class DaoCaserne {
         }
         catch (SQLException e){
             e.printStackTrace();
-            System.out.println("La requête de getLesPompiers e généré une erreur");
+            System.out.println("La requête de getLesCasernes c généré une erreur");
         }
         return lesCasernes;
     }
