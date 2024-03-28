@@ -26,7 +26,7 @@ public class DaoPompier {
         
         ArrayList<Pompier> lesPompiers = new ArrayList<Pompier>();
         try{
-            requeteSql = cnx.prepareStatement("select select pom_id, pom_nom, pom_prenom, cas_id, cas_nom " +
+            requeteSql = cnx.prepareStatement("select pom_id, pom_nom, pom_prenom, cas_id, cas_nom " +
                          " from pompier inner join caserne  " +
                          " on pom_caserne_id = cas_id  ");
             resultatRequete = requeteSql.executeQuery();
@@ -58,7 +58,7 @@ public class DaoPompier {
         
         Pompier p = null ;
         try{
-            requeteSql = cnx.prepareStatement("select select pom_id, pom_nom, pom_prenom, cas_id, cas_nom " +
+            requeteSql = cnx.prepareStatement("select pom_id, pom_nom, pom_prenom, cas_id, cas_nom " +
                          " from pompier inner join caserne  " +
                          " on pom_caserne_id = cas_id "+
                          " where pom_id= ? ");
