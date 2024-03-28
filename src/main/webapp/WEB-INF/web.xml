@@ -21,7 +21,7 @@
   
     <servlet>
         <servlet-name>ServletCaserne</servlet-name>
-        <servlet-class>servlet.ServletCasernes</servlet-class>
+        <servlet-class>servlet.ServletCaserne</servlet-class>
     </servlet>
     
     <servlet-mapping>
