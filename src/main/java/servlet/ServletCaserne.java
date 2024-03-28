@@ -21,7 +21,7 @@ import model.Caserne;
  *
  * @author ts1sio
  */
-@WebServlet(name = "ServletCasernes", urlPatterns = {"/ServletCasernes"})
+@WebServlet(name = "ServletCaserne", urlPatterns = {"/ServletCaserne"})
 public class ServletCaserne extends HttpServlet {
 
     
@@ -50,10 +50,10 @@ public class ServletCaserne extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletCasernes</title>");            
+            out.println("<title>Servlet ServletCaserne</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ServletCasernes at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ServletCaserne at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
