@@ -26,20 +26,20 @@ public class DaoPompier {
         
         ArrayList<Pompier> lesPompiers = new ArrayList<Pompier>();
         try{
-            requeteSql = cnx.prepareStatement("select pompier.id as p_id, pompier.nom as p_nom, pompier.prenom as p_prenom, c.id as c_id, c.nom as c_nom " +
-                         " from pompier inner join caserne c " +
-                         " on pompier.caserne_id = c.id ");
+            requeteSql = cnx.prepareStatement("select select pom_id, pom_nom, pom_prenom, cas_id, cas_nom " +
+                         " from pompier inner join caserne  " +
+                         " on pom_caserne_id = cas_id  ");
             resultatRequete = requeteSql.executeQuery();
             
             while (resultatRequete.next()){
                 
                 Pompier p = new Pompier();
-                    p.setId(resultatRequete.getInt("p_id"));
-                    p.setNom(resultatRequete.getString("p_nom"));
-                    p.setPrenom(resultatRequete.getString("p_prenom"));
+                    p.setId(resultatRequete.getInt("pom_id"));
+                    p.setNom(resultatRequete.getString("pom_nom"));
+                    p.setPrenom(resultatRequete.getString("pom_prenom"));
                 Caserne c = new Caserne();
-                    c.setId(resultatRequete.getInt("c_id"));
-                    c.setNom(resultatRequete.getString("c_nom"));
+                    c.setId(resultatRequete.getInt("cas_id"));
+                    c.setNom(resultatRequete.getString("cas_nom"));
                 
                 p.setUneCaserne(c);
                 
@@ -58,22 +58,22 @@ public class DaoPompier {
         
         Pompier p = null ;
         try{
-            requeteSql = cnx.prepareStatement("select pompier.id as p_id, pompier.nom as p_nom, pompier.prenom as p_prenom, c.id as c_id, c.nom as c_nom " +
-                         " from pompier inner join caserne c " +
-                         " on pompier.caserne_id = c.id "+
-                         " where pompier.id= ? ");
+            requeteSql = cnx.prepareStatement("select select pom_id, pom_nom, pom_prenom, cas_id, cas_nom " +
+                         " from pompier inner join caserne  " +
+                         " on pom_caserne_id = cas_id "+
+                         " where pom_id= ? ");
             requeteSql.setInt(1, idPompier);
             resultatRequete = requeteSql.executeQuery();
             
             if (resultatRequete.next()){
                 
                     p = new Pompier();
-                    p.setId(resultatRequete.getInt("p_id"));
-                    p.setNom(resultatRequete.getString("p_nom"));
-                    p.setPrenom(resultatRequete.getString("p_prenom"));
+                    p.setId(resultatRequete.getInt("pom_id"));
+                    p.setNom(resultatRequete.getString("pom_nom"));
+                    p.setPrenom(resultatRequete.getString("pom_prenom"));
                 Caserne c = new Caserne();
-                    c.setId(resultatRequete.getInt("c_id"));
-                    c.setNom(resultatRequete.getString("c_nom"));
+                    c.setId(resultatRequete.getInt("cas_id"));
+                    c.setNom(resultatRequete.getString("cas_nom"));
                 
                 p.setUneCaserne(c);
                 
@@ -97,7 +97,7 @@ public class DaoPompier {
             // id (clé primaire de la table client) est en auto_increment,donc on ne renseigne pas cette valeur
             // la paramètre RETURN_GENERATED_KEYS est ajouté à la requête afin de pouvoir récupérer l'id généré par la bdd (voir ci-dessous)
             // supprimer ce paramètre en cas de requête sans auto_increment.
-            requeteSql=connection.prepareStatement("INSERT INTO pompier ( nom, prenom, caserne_id)\n" +
+            requeteSql=connection.prepareStatement("INSERT INTO pompier ( pom_nom, pom_prenom, pom_caserne_id)\n" +
                     "VALUES (?,?,?)", requeteSql.RETURN_GENERATED_KEYS );
             requeteSql.setString(1, p.getNom());
             requeteSql.setString(2, p.getPrenom());

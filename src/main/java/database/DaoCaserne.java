@@ -33,8 +33,8 @@ public class DaoCaserne {
             while (resultatRequete.next()){
                 
                 Caserne c = new Caserne();
-                    c.setId(resultatRequete.getInt("id"));
-                    c.setNom(resultatRequete.getString("nom"));
+                    c.setId(resultatRequete.getInt("cas_id"));
+                    c.setNom(resultatRequete.getString("cas_nom"));
 
                 lesCasernes.add(c);
             }
