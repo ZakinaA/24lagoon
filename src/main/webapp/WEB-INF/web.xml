@@ -24,6 +24,11 @@
         <servlet-class>servlet.ServletCaserne</servlet-class>
     </servlet>
     
+    <servlet>
+        <servlet-name>ServletVehicule</servlet-name>
+        <servlet-class>servlet.ServletVehicule</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>ServletPompier</servlet-name>
         <url-pattern>/ServletPompier/lister</url-pattern>
@@ -52,6 +57,11 @@
     <servlet-mapping>
         <servlet-name>ServletCaserne</servlet-name>
         <url-pattern>/ServletCaserne/lister</url-pattern>
+    </servlet-mapping>
+    
+     <servlet-mapping>
+        <servlet-name>ServletVehicule</servlet-name>
+        <url-pattern>/ServletVehicule/lister</url-pattern>
     </servlet-mapping>
     
     <session-config>
