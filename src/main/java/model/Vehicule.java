@@ -16,6 +16,7 @@ public class Vehicule {
     private String immatriculation ;
     private LocalDate dateOrigine;
     private LocalDate dateRevision;
+    private TypeVehicule typeVehicule;
 
     public Vehicule() {
     }
@@ -57,5 +58,13 @@ public class Vehicule {
 
     public void setDateRevision(LocalDate dateRevision) {
         this.dateRevision = dateRevision;
+    }
+
+    public TypeVehicule getTypeVehicule() {
+        return typeVehicule;
+    }
+
+    public void setTypeVehicule(TypeVehicule typeVehicule) {
+        this.typeVehicule = typeVehicule;
     }
 }
