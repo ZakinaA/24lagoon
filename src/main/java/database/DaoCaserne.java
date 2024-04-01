@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Caserne;
+import model.Pompier;
 
 /**
  *
@@ -51,4 +52,27 @@ public class DaoCaserne {
         return lesCasernes;
     }
     
+    public static ArrayList<Pompier> getLesPompiersCaserneById(Connection cnx, int idCaserne){
+    ArrayList<Pompier> lesPompiers = new ArrayList<Pompier>();
+    try{
+        PreparedStatement requeteSql = cnx.prepareStatement("SELECT pom_id, pom_nom, pom_prenom " +
+                     "FROM pompier " +
+                     "WHERE pom_caserne_id = ?");
+        requeteSql.setInt(1, idCaserne);
+        ResultSet resultatRequete = requeteSql.executeQuery();
+        
+        while (resultatRequete.next()){
+            Pompier p = new Pompier();
+            p.setId(resultatRequete.getInt("pom_id"));
+            p.setNom(resultatRequete.getString("pom_nom"));
+            p.setPrenom(resultatRequete.getString("pom_prenom"));
+            lesPompiers.add(p); // Ajout du pompier à la liste
+        }
+    }
+    catch (SQLException e){
+        e.printStackTrace();
+        System.out.println("La requête de getLesPompiersCaserneById a généré une erreur");
+        }
+    return lesPompiers;
+    }
 }
