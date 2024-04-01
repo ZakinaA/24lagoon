@@ -59,6 +59,11 @@
         <url-pattern>/ServletCaserne/lister</url-pattern>
     </servlet-mapping>
     
+    <servlet-mapping>
+        <servlet-name>ServletCaserne</servlet-name>
+        <url-pattern>/ServletCaserne/consulter</url-pattern>
+    </servlet-mapping>
+    
      <servlet-mapping>
         <servlet-name>ServletVehicule</servlet-name>
         <url-pattern>/ServletVehicule/lister</url-pattern>
