@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 import java.util.ArrayList;
 import model.Caserne;
+import model.Pompier;
 
 /**
  *
@@ -82,6 +83,19 @@ public class ServletCaserne extends HttpServlet {
             System.out.println("lister casernes - nombres de casernes récupérés" + lesCasernes.size() );
            getServletContext().getRequestDispatcher("/vues/pompier/listerCasernes.jsp").forward(request, response);
         }
+        
+        if(url.equals("/sdisweb/ServletCaserne/consulter")) {  
+            String idCaserneParam = request.getParameter("idCaserne");
+            
+            if (idCaserneParam != null) {
+                int idCaserne = Integer.parseInt(idCaserneParam);
+                System.out.println("pompier à afficher = " + idCaserne);
+                ArrayList<Pompier> c = DaoCaserne.getLesPompiersCaserneById(cnx, idCaserne);
+                request.setAttribute("pCasernePompier", c);
+                
+                getServletContext().getRequestDispatcher("/vues/pompier/consulterCasernePompier.jsp").forward(request, response);             
+                } 
+            }
     }
 
     /**
