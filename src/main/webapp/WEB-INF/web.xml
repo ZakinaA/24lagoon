@@ -53,6 +53,11 @@
         <servlet-name>ServletGrade</servlet-name>
         <url-pattern>/ServletGrade/lister</url-pattern>
     </servlet-mapping>
+    
+     <servlet-mapping>
+        <servlet-name>ServletGrade</servlet-name>
+        <url-pattern>/ServletGrade/consulter</url-pattern>
+    </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>ServletCaserne</servlet-name>
