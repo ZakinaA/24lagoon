@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Grade;
+import model.Pompier;
 import model.Surgrade;
 
 /**
@@ -48,4 +49,28 @@ public class DaoGrade {
         }
         return lesGrades;
     }
+     
+     public static ArrayList<Pompier> getLesPompiersGradeById(Connection cnx, int idGrade){
+         ArrayList<Pompier> lesPompiers = new ArrayList<Pompier>();
+            try{
+                PreparedStatement requeteSql = cnx.prepareStatement("SELECT pom_id, pom_nom, pom_prenom " +
+                             "FROM pompier " +
+                             "WHERE pom_grade_id = ?");
+                requeteSql.setInt(1, idGrade);
+                ResultSet resultatRequete = requeteSql.executeQuery();
+
+                while (resultatRequete.next()){
+                    Pompier p = new Pompier();
+                    p.setId(resultatRequete.getInt("pom_id"));
+                    p.setNom(resultatRequete.getString("pom_nom"));
+                    p.setPrenom(resultatRequete.getString("pom_prenom"));
+                    lesPompiers.add(p); // Ajout du pompier à la liste
+                }
+            }
+            catch (SQLException e){
+                e.printStackTrace();
+                System.out.println("La requête de getLesPompiersGradeById a généré une erreur");
+                }
+            return lesPompiers;
+            }
 }
