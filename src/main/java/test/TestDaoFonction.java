@@ -9,6 +9,7 @@ import database.DaoFonction;
 import java.sql.Connection;
 import java.util.ArrayList;
 import model.Fonction;
+import model.Pompier;
 
 /**
  *
@@ -25,5 +26,11 @@ public class TestDaoFonction {
             for (Fonction f : lesFonctions){
             System.out.println(" . "+ f.getId() + " " + f.getLibelle());
         }
+        
+            ArrayList<Pompier> lesPompiersFonction = DaoFonction.getLesPompiersFonctionById(cnx, 1);
+            System.out.println("\nPompiers pour la fonction 1 : ");
+            for (Pompier p : lesPompiersFonction) {
+            System.out.println("Pompier : " + p.getId() + " " + p.getNom() + " " + p.getPrenom());
         }
+    }
 }

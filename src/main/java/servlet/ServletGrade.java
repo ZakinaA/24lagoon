@@ -87,10 +87,10 @@ public class ServletGrade extends HttpServlet {
         }
         
         if(url.equals("/sdisweb/ServletGrade/consulter")) {  
-            String idCaserneParam = request.getParameter("idGrade");
+            String idGradeParam = request.getParameter("idGrade");
             
-            if (idCaserneParam != null) {
-                int idGrade = Integer.parseInt(idCaserneParam);
+            if (idGradeParam != null) {
+                int idGrade = Integer.parseInt(idGradeParam);
                 System.out.println("pompier à afficher = " + idGrade);
                 ArrayList<Pompier> c = DaoGrade.getLesPompiersGradeById(cnx, idGrade);
                 request.setAttribute("pGradePompier", c);

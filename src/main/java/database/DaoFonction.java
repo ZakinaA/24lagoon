@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Fonction;
+import model.Pompier;
 
 /**
  *
@@ -44,4 +45,31 @@ public class DaoFonction {
         }
         return lesFonctions;
     }
+    
+    public static ArrayList<Pompier> getLesPompiersFonctionById(Connection cnx, int idFonction){
+         ArrayList<Pompier> lesPompiers = new ArrayList<Pompier>();
+            try{
+                PreparedStatement requeteSql = cnx.prepareStatement("SELECT pom_id, pom_nom, pom_prenom from pompier\n" +
+                                                                    "JOIN pompier_fonction \n" +
+                                                                    "ON pom_id = pom_id_pompierfonction\n" +
+                                                                    "JOIN fonction\n" +
+                                                                    "ON fon_id = fonction_id_pompierfonction\n" +
+                                                                    "WHERE fon_id = ?");
+                requeteSql.setInt(1, idFonction);
+                ResultSet resultatRequete = requeteSql.executeQuery();
+
+                while (resultatRequete.next()){
+                    Pompier p = new Pompier();
+                    p.setId(resultatRequete.getInt("pom_id"));
+                    p.setNom(resultatRequete.getString("pom_nom"));
+                    p.setPrenom(resultatRequete.getString("pom_prenom"));
+                    lesPompiers.add(p); // Ajout du pompier à la liste
+                }
+            }
+            catch (SQLException e){
+                e.printStackTrace();
+                System.out.println("La requête de getLesPompiersFonctionById a généré une erreur");
+                }
+            return lesPompiers;
+            }
 }

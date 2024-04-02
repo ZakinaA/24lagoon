@@ -49,6 +49,11 @@
         <url-pattern>/ServletFonction/lister</url-pattern>
     </servlet-mapping>
     
+    <servlet-mapping>
+        <servlet-name>ServletFonction</servlet-name>
+        <url-pattern>/ServletFonction/consulter</url-pattern>
+    </servlet-mapping>
+    
      <servlet-mapping>
         <servlet-name>ServletGrade</servlet-name>
         <url-pattern>/ServletGrade/lister</url-pattern>
