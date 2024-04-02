@@ -39,9 +39,9 @@
                         {              
                             out.println("<tr><td>");
                             out.println(g.getId());
-                            out.println("</td>");
+                            out.println("</a></td>");
 
-                            out.println("<td>");
+                            out.println("<td><a href ='../ServletGrade/consulter?idGrade="+ g.getId()+ "'>");
                             out.println(g.getLibelle());
                             out.println("</td>");;
                             
