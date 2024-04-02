@@ -89,10 +89,10 @@ public class ServletFonction extends HttpServlet {
         }
         
         if(url.equals("/sdisweb/ServletFonction/consulter")) {  
-            String idPompierParam = request.getParameter("idFonction");
+            String idFonctionParam = request.getParameter("idFonction");
             
-            if (idPompierParam != null) {
-                int idFonction = Integer.parseInt(idPompierParam);
+            if (idFonctionParam != null) {
+                int idFonction = Integer.parseInt(idFonctionParam);
                 System.out.println("pompier à afficher = " + idFonction);
                 ArrayList<Pompier> p = DaoFonction.getLesPompiersFonctionById(cnx, idFonction);
                 request.setAttribute("pFonctionPompier", p);
