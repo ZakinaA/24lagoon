@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 import java.util.ArrayList;
 import model.Grade;
+import model.Pompier;
 
 /**
  *
@@ -84,6 +85,19 @@ public class ServletGrade extends HttpServlet {
             System.out.println("lister grades - nombres de grades récupérés" + lesGrades.size());
             getServletContext().getRequestDispatcher("/vues/pompier/listerGrade.jsp").forward(request, response);
         }
+        
+        if(url.equals("/sdisweb/ServletGrade/consulter")) {  
+            String idCaserneParam = request.getParameter("idGrade");
+            
+            if (idCaserneParam != null) {
+                int idGrade = Integer.parseInt(idCaserneParam);
+                System.out.println("pompier à afficher = " + idGrade);
+                ArrayList<Pompier> c = DaoGrade.getLesPompiersGradeById(cnx, idGrade);
+                request.setAttribute("pGradePompier", c);
+                
+                getServletContext().getRequestDispatcher("/vues/pompier/consulterGrade.jsp").forward(request, response);             
+                } 
+            }
     }
 
     /**
