@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 import java.util.ArrayList;
 import model.Fonction;
+import model.Pompier;
 
 
 /**
@@ -86,6 +87,19 @@ public class ServletFonction extends HttpServlet {
             System.out.println("lister fonctions - nombres de fonctions récupérés" + lesFonctions.size() );
            getServletContext().getRequestDispatcher("/vues/pompier/listerFonctions.jsp").forward(request, response);
         }
+        
+        if(url.equals("/sdisweb/ServletFonction/consulter")) {  
+            String idPompierParam = request.getParameter("idFonction");
+            
+            if (idPompierParam != null) {
+                int idFonction = Integer.parseInt(idPompierParam);
+                System.out.println("pompier à afficher = " + idFonction);
+                ArrayList<Pompier> p = DaoFonction.getLesPompiersFonctionById(cnx, idFonction);
+                request.setAttribute("pFonctionPompier", p);
+                
+                getServletContext().getRequestDispatcher("/vues/pompier/consulterFonction.jsp").forward(request, response);             
+                } 
+            }
     }
 
     /**
