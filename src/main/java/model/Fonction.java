@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ts1sio
@@ -12,6 +14,7 @@ public class Fonction {
     
     private int id;
     private String libelle ;
+    private ArrayList<Pompier> lesPompiers;
 
     public Fonction() {
     }
@@ -35,6 +38,21 @@ public class Fonction {
 
     public void setLibelle(String libelle) {
         this.libelle = libelle;
+    }
+
+    public ArrayList<Pompier> getLesPompiers() {
+        return lesPompiers;
+    }
+
+    public void setLesPompiers(ArrayList<Pompier> lesPompiers) {
+        this.lesPompiers = lesPompiers;
+    }
+    
+    public void addUnPompier(Pompier unPompier){
+        if (lesPompiers == null){
+            lesPompiers = new ArrayList<Pompier>();
+        }
+        lesPompiers.add(unPompier);
     }
     
     
