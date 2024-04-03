@@ -24,6 +24,9 @@
             <tr>
                 <td>Caserne : </td><td><%  out.println(p.getUneCaserne().getNom());%></td>
             </tr>
+            <tr>
+                <td>Grade : </td><td><%  out.println(p.getUnGrade().getLibelle());%></td>
+            </tr>
         </table>
     </body>
 </html>
