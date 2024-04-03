@@ -63,7 +63,7 @@ public class DaoFonction {
                     p.setId(resultatRequete.getInt("pom_id"));
                     p.setNom(resultatRequete.getString("pom_nom"));
                     p.setPrenom(resultatRequete.getString("pom_prenom"));
-                    lesPompiers.add(p); // Ajout du pompier à la liste
+                    lesPompiers.add(p); 
                 }
             }
             catch (SQLException e){
