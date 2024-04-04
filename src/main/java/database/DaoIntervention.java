@@ -31,7 +31,7 @@ public class DaoIntervention {
                 PreparedStatement requeteSql = cnx.prepareStatement("select * " +
                                                                     " from intervention "+
                                                                     "inner join caserne "+
-                                                                    " on cas_id = int_caserne_id "+
+                                                                    " on cas_id = cas_intervention_id "+
                                                                     " where cas_id = ?");
                 requeteSql.setInt(1, idCaserne);
                 ResultSet resultatRequete = requeteSql.executeQuery();
