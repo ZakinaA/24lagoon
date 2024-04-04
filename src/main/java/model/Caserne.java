@@ -18,6 +18,7 @@ public class Caserne {
     private int copos;
     private String ville ;
     private ArrayList<Pompier> lesPompiers ;
+    private ArrayList<Intervention> lesInterventions ;
 
     public Caserne() {
     }
@@ -90,4 +91,18 @@ public class Caserne {
         lesPompiers.add(p);
     }
     
+    public ArrayList<Intervention> getLesInterventions() {
+        return lesInterventions;
+    }
+
+    public void setLesInterventions(ArrayList<Intervention> lesInterventions) {
+        this.lesInterventions = lesInterventions;
+    }
+    
+    public void addIntervention(Intervention i){
+        if (lesInterventions == null){
+            lesInterventions = new ArrayList<Intervention>();
+        }
+        lesInterventions.add(i);
+    }
 }

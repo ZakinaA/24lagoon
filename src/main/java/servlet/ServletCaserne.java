@@ -5,6 +5,7 @@
 package servlet;
 
 import database.DaoCaserne;
+import database.DaoIntervention;
 import jakarta.servlet.ServletContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 import java.util.ArrayList;
 import model.Caserne;
+import model.Intervention;
 import model.Pompier;
 
 /**
@@ -95,6 +97,9 @@ public class ServletCaserne extends HttpServlet {
                 
                 Caserne nom = DaoCaserne.getNomCaserneById(cnx, idCaserne);
                 request.setAttribute("CaserneNom", nom);
+                
+                ArrayList<Intervention> i = DaoIntervention.getInterventionCaserneById(cnx, idCaserne);
+                request.setAttribute("pCaserneIntervention", i);
 
 
                 
