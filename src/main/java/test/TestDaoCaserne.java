@@ -27,6 +27,9 @@ public class TestDaoCaserne {
         for (Pompier pompier : pompiers) {
             System.out.println("ID: " + pompier.getId() + ", Nom: " + pompier.getNom() + ", Prénom: " + pompier.getPrenom());
         }
+        
+        System.out.println ("La caserne 1 s'appelle =" + DaoCaserne.getNomCaserneById(cnx,1).getNom());
+
     }
     
 }

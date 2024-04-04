@@ -93,6 +93,11 @@ public class ServletCaserne extends HttpServlet {
                 ArrayList<Pompier> c = DaoCaserne.getLesPompiersCaserneById(cnx, idCaserne);
                 request.setAttribute("pCasernePompier", c);
                 
+                Caserne nom = DaoCaserne.getNomCaserneById(cnx, idCaserne);
+                request.setAttribute("CaserneNom", nom);
+
+
+                
                 getServletContext().getRequestDispatcher("/vues/pompier/consulterCasernePompier.jsp").forward(request, response);             
                 } 
             }
