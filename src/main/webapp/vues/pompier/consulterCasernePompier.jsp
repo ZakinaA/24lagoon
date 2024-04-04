@@ -6,6 +6,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Pompier"%>
 <%@page import="model.Caserne"%>
+<%@page import="model.Intervention"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,6 +28,10 @@
 
             <%
                 ArrayList<Pompier> lesPompiers = (ArrayList)request.getAttribute("pCasernePompier");
+            %>
+            
+            <%
+                ArrayList<Intervention> lesInterventions = (ArrayList)request.getAttribute("pCaserneIntervention");
             %>
           
             <table>  
@@ -55,9 +60,54 @@
                             out.println("</td>");                     
                         }
                     %>
-                </tr>
+                </tr>   
             </tbody>
         </table>
+            <table>
+                <thead>
+                <tr>             
+                    <th>Id</th>
+                    <th>Lieu</th>
+                    <th>Date</th> 
+                    <th>Heure d'appel</th>
+                    <th>Heure d'arrivée</th>              
+                    <th>Durée</th>              
+                </tr>
+                </thead>
+                <tbody
+                    <tr>
+                         <%
+                            for (Intervention i : lesInterventions)
+                            {              
+                                out.println("<tr><td>");
+                                out.println(i.getId());
+                                out.println("</td>");
+
+                                out.println("<td>");
+                                out.println(i.getLieu());
+                                out.println("</td>");;
+
+                                out.println("<td>");
+                                out.println(i.getDate());
+                                out.println("</td>");
+
+                                out.println("<td>");
+                                out.println(i.getHeureAppel());
+                                out.println("</td>");     
+
+                                out.println("<td>");
+                                out.println(i.getHeureArrivee());
+                                out.println("</td>");     
+
+                                out.println("<td>");
+                                out.println(i.getDuree());
+                                out.println("</td>");     
+
+                            }
+                        %>
+                    </tr>
+                </tbody>
+            </table>
     </body>
     </body>
 </html>
