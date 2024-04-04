@@ -72,4 +72,34 @@ public class DaoFonction {
                 }
             return lesPompiers;
             }
+    
+    public static ArrayList<Fonction> getLesFonctionsPompierById(Connection cnx, int idPompier){
+         ArrayList<Fonction> lesFonctions = new ArrayList<Fonction>();
+            try{
+                PreparedStatement requeteSql = cnx.prepareStatement("select fon_id, fon_libelle "
+                                                                    + "from fonction "
+                                                                    + "join pompier_fonction "
+                                                                    + "on fonction_id_pompierfonction = fon_id "
+                                                                    + "join pompier "
+                                                                    + "on pom_id_pompierfonction = pom_id "
+                                                                    + "where pom_id = ?");
+                requeteSql.setInt(1, idPompier);
+                ResultSet resultatRequete = requeteSql.executeQuery();
+
+                while (resultatRequete.next()){
+                    Fonction f = new Fonction();
+                    f.setId(resultatRequete.getInt("fon_id"));
+                    f.setLibelle(resultatRequete.getString("fon_libelle"));
+                    
+                    
+                    lesFonctions.add(f); 
+                }
+            }
+            catch (SQLException e){
+                e.printStackTrace();
+                System.out.println("La requête de getLesPompiersFonctionById a généré une erreur");
+                }
+            return lesFonctions;
+            }
+    
 }
