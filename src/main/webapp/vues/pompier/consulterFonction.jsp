@@ -20,7 +20,10 @@
         <title>APPLICATION DE GESTION SDIS CALVADOS</title>
     </head>
     <body>
-        <h1>Voici les pompiers de cette fonction</h1>
+        <%
+            Fonction nom = (Fonction)request.getAttribute("FonctionNom");
+        %>
+        <h1>Voici les pompiers de cette fonction <%  out.println(nom.getLibelle());%> </h1>
 
             <%
                 ArrayList<Pompier> lesPompiers = (ArrayList)request.getAttribute("pFonctionPompier");
