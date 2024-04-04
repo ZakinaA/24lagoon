@@ -95,6 +95,9 @@ public class ServletGrade extends HttpServlet {
                 ArrayList<Pompier> c = DaoGrade.getLesPompiersGradeById(cnx, idGrade);
                 request.setAttribute("pGradePompier", c);
                 
+                Grade nom = DaoGrade.getNomGradeById(cnx, idGrade);
+                request.setAttribute("GradeNom", nom);
+                
                 getServletContext().getRequestDispatcher("/vues/pompier/consulterGrade.jsp").forward(request, response);             
                 } 
             }
