@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -16,11 +17,38 @@ public class Pompier {
     private String bip ;
     private String nom;
     private String prenom ;
+    private LocalDate dateNaiss;
+    private int indice;
     private Caserne uneCaserne ;
     private Grade unGrade;
     private ArrayList<Fonction> lesFonctions;
 
     public Pompier() {
+    }
+
+    public Pompier(int id, String bip, String nom, String prenom, LocalDate dateNaiss, int indice) {
+        this.id = id;
+        this.bip = bip;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaiss = dateNaiss;
+        this.indice = indice;
+    }
+
+    public int getIndice() {
+        return indice;
+    }
+
+    public void setIndice(int indice) {
+        this.indice = indice;
+    }
+
+    public LocalDate getDateNaiss() {
+        return dateNaiss;
+    }
+
+    public void setDateNaiss(LocalDate dateNaiss) {
+        this.dateNaiss = dateNaiss;
     }
 
     public int getId() {
