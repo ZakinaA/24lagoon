@@ -4,7 +4,7 @@
  */
 package servlet;
 
-import database.DaoFonction;
+import database.DaoSurgrade;
 import jakarta.servlet.ServletContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,20 +15,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 import java.util.ArrayList;
-import model.Fonction;
-import model.Pompier;
-
+import model.Surgrade;
 
 /**
  *
  * @author ts1sio
  */
-@WebServlet(name = "ServletFonction", urlPatterns = {"/ServletFonction"})
-public class ServletFonction extends HttpServlet {
-
+@WebServlet(name = "ServletSurgrade", urlPatterns = {"/ServletSurgrade"})
+public class ServletSurgrade extends HttpServlet {
     
-    
-     Connection cnx ;
+    Connection cnx ;
             
     @Override
     public void init()
@@ -54,10 +50,10 @@ public class ServletFonction extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletFonction</title>");            
+            out.println("<title>Servlet ServletSurgrade</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ServletFonction at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ServletSurgrade at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -75,34 +71,17 @@ public class ServletFonction extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
         
-        String url = request.getRequestURI();  
+                 String url = request.getRequestURI();  
 
-                 
-        if(url.equals("/sdisweb/ServletFonction/lister"))
-        {              
-            ArrayList<Fonction> lesFonctions = DaoFonction.getLesFonctions(cnx);
-            request.setAttribute("fLesFonctions", lesFonctions);
-            System.out.println("lister fonctions - nombres de fonctions récupérés" + lesFonctions.size() );
-           getServletContext().getRequestDispatcher("/vues/pompier/listerFonctions.jsp").forward(request, response);
-        }
         
-        if(url.equals("/sdisweb/ServletFonction/consulter")) {  
-            String idFonctionParam = request.getParameter("idFonction");
-            
-            if (idFonctionParam != null) {
-                int idFonction = Integer.parseInt(idFonctionParam);
-                System.out.println("pompier à afficher = " + idFonction);
-                ArrayList<Pompier> p = DaoFonction.getLesPompiersFonctionById(cnx, idFonction);
-                request.setAttribute("pFonctionPompier", p);
-                
-                Fonction nom = DaoFonction.getNomFonctionById(cnx, idFonction);
-                request.setAttribute("FonctionNom", nom);
-                
-                getServletContext().getRequestDispatcher("/vues/pompier/consulterFonction.jsp").forward(request, response);             
-                } 
-            }
+                if(url.equals("/sdisweb/ServletSurgrade/lister"))
+                {              
+                    ArrayList<Surgrade> lesSurgrades = DaoSurgrade.getLesSurgrades(cnx);
+                    request.setAttribute("pLesSurgrades", lesSurgrades);
+                    //System.out.println("lister eleves - nombres d'élèves récupérés" + lesEleves.size() );
+                   getServletContext().getRequestDispatcher("/vues/pompier/listerSurgrade.jsp").forward(request, response);
+                }
     }
 
     /**

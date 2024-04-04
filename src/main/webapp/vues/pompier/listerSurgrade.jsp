@@ -1,13 +1,12 @@
 <%-- 
-    Document   : consulterFonction
-    Created on : 2 avr. 2024, 20:42:21
-    Author     : alexi
+    Document   : listerSurgrade
+    Created on : 4 avr. 2024, 11:07:25
+    Author     : ts1sio
 --%>
 
-<%@page import="java.util.ArrayList"%>
-<%@page import="model.Pompier"%>
-<%@page import="model.Fonction"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.Surgrade"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,38 +19,29 @@
         <title>APPLICATION DE GESTION SDIS CALVADOS</title>
     </head>
     <body>
-        <%
-            Fonction nom = (Fonction)request.getAttribute("FonctionNom");
-        %>
-        <h1>Voici les pompiers de cette fonction <%  out.println(nom.getLibelle());%> </h1>
-
+        <h1>Liste des surgrades</h1>
             <%
-                ArrayList<Pompier> lesPompiers = (ArrayList)request.getAttribute("pFonctionPompier");
+                ArrayList<Surgrade> lesSurgrades = (ArrayList)request.getAttribute("pLesSurgrades");
             %>
             <table>  
             <thead>
                 <tr>             
                     <th>Id</th>
-                    <th>Nom</th>
-                    <th>Prenom</th>              
+                    <th>Libelle</th>              
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <%
-                        for (Pompier p : lesPompiers)
+                        for (Surgrade s : lesSurgrades)
                         {              
                             out.println("<tr><td>");
-                            out.println(p.getId());
+                            out.println(s.getId());
                             out.println("</td>");
 
                             out.println("<td>");
-                            out.println(p.getNom());
-                            out.println("</td>");;
-
-                            out.println("<td>");
-                            out.println(p.getPrenom());
-                            out.println("</td>");                     
+                            out.println(s.getLibelle());
+                            out.println("</td>");; 
                         }
                     %>
                 </tr>
@@ -60,3 +50,4 @@
     </body>
     </body>
 </html>
+

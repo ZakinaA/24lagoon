@@ -4,12 +4,15 @@
  */
 package database;
 
+import static database.DaoFonction.requeteSql;
+import static database.DaoFonction.resultatRequete;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Fonction;
+import model.Grade;
 import model.Pompier;
 
 /**
@@ -102,4 +105,30 @@ public class DaoFonction {
             return lesFonctions;
             }
     
+     public static Fonction getNomFonctionById(Connection cnx, int idFonction){
+         
+        Fonction nom = null;
+        
+        try{
+            requeteSql = cnx.prepareStatement("select fon_id, fon_libelle " +
+                         " from fonction "+
+                         " where fon_id= ? ");
+            requeteSql.setInt(1, idFonction);
+            resultatRequete = requeteSql.executeQuery();
+            
+            if (resultatRequete.next()){
+  
+                    nom = new Fonction();
+                    nom.setId(resultatRequete.getInt("fon_id"));
+                    nom.setLibelle(resultatRequete.getString("fon_libelle"));
+            }
+           
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("La requête de getNomFonctionById  a généré une erreur");
+        }
+        
+        return nom;
+    }
 }

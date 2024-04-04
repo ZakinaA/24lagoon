@@ -75,4 +75,29 @@ public class DaoCaserne {
         }
     return lesPompiers;
     }
+    
+    public static Caserne getNomCaserneById(Connection cnx, int idCaserne){
+        
+        Caserne nom = null;
+        try{
+            requeteSql = cnx.prepareStatement("select cas_id, cas_nom " +
+                         " from caserne "+
+                         " where cas_id= ? ");
+            requeteSql.setInt(1, idCaserne);
+            resultatRequete = requeteSql.executeQuery();
+            
+            if (resultatRequete.next()){
+  
+                    nom = new Caserne();
+                    nom.setId(resultatRequete.getInt("cas_id"));
+                    nom.setNom(resultatRequete.getString("cas_nom"));
+            }
+           
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("La requête de getLesPompiersCaserneById  a généré une erreur");
+        }
+        return nom ;
+    }
 }
