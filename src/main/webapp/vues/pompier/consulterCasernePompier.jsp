@@ -18,12 +18,17 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>APPLICATION DE GESTION SDIS CALVADOS</title>
     </head>
+
     <body>
-        <h1>Voici les pompiers de la caserne</h1>
+         <%
+            Caserne nom = (Caserne)request.getAttribute("CaserneNom");
+         %>
+        <h1>Voici les pompiers de la caserne  <%  out.println(nom.getNom());%></h1>
 
             <%
                 ArrayList<Pompier> lesPompiers = (ArrayList)request.getAttribute("pCasernePompier");
             %>
+          
             <table>  
             <thead>
                 <tr>             
