@@ -6,6 +6,7 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Pompier"%>
+<%@page import="model.Grade"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,7 +20,10 @@
         <title>APPLICATION DE GESTION SDIS CALVADOS</title>
     </head>
     <body>
-        <h1>Voici les pompiers ayant ce grade</h1>
+         <%
+            Grade nom = (Grade)request.getAttribute("GradeNom");
+         %>
+        <h1>Voici les pompiers ayant ce grade <%  out.println(nom.getLibelle());%> </h1>
 
             <%
                 ArrayList<Pompier> lesPompiers = (ArrayList)request.getAttribute("pGradePompier");
