@@ -19,6 +19,7 @@ public class Intervention {
     private LocalTime heureAppel;
     private LocalTime heureArrivee;
     private LocalTime duree;
+    private Caserne caserne;
     
     public Intervention() {
     }
@@ -80,4 +81,11 @@ public class Intervention {
         this.duree = duree;
     }
     
+    public Caserne getCaserne() {
+        return caserne;
+    }
+    
+    public void setCaserne(Caserne caserne) {
+        this.caserne = caserne;
+    }
 }
