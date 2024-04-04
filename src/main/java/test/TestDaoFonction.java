@@ -32,5 +32,6 @@ public class TestDaoFonction {
             for (Pompier p : lesPompiersFonction) {
             System.out.println("Pompier : " + p.getId() + " " + p.getNom() + " " + p.getPrenom());
         }
+            System.out.println ("La fontion 1 s'appelle = " + DaoFonction.getNomFonctionById(cnx,1).getLibelle());
     }
 }
