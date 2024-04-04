@@ -32,5 +32,6 @@ public class TestDaoGrade {
             for (Pompier pompier : pompiers) {
                 System.out.println("ID: " + pompier.getId() + ", Nom: " + pompier.getNom() + ", Prénom: " + pompier.getPrenom());
             }
+            System.out.println ("Le grade 1 s'appelle = " + DaoGrade.getNomGradeById(cnx,1).getLibelle());
     }
 }

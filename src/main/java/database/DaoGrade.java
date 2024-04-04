@@ -4,11 +4,14 @@
  */
 package database;
 
+import static database.DaoGrade.requeteSql;
+import static database.DaoGrade.resultatRequete;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import model.Caserne;
 import model.Grade;
 import model.Pompier;
 import model.Surgrade;
@@ -73,4 +76,31 @@ public class DaoGrade {
                 }
             return lesPompiers;
             }
+     
+     public static Grade getNomGradeById(Connection cnx, int idGrade){
+         
+        Grade nom = null;
+        
+        try{
+            requeteSql = cnx.prepareStatement("select gra_id, gra_libelle " +
+                         " from grade "+
+                         " where gra_id= ? ");
+            requeteSql.setInt(1, idGrade);
+            resultatRequete = requeteSql.executeQuery();
+            
+            if (resultatRequete.next()){
+  
+                    nom = new Grade();
+                    nom.setId(resultatRequete.getInt("gra_id"));
+                    nom.setLibelle(resultatRequete.getString("gra_libelle"));
+            }
+           
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("La requête de getNomGradeById  a généré une erreur");
+        }
+        
+        return nom;
+    }
 }
