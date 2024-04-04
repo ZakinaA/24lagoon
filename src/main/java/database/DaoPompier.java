@@ -5,11 +5,14 @@
 package database;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import model.Caserne;
+import model.Grade;
 import model.Pompier;
 
 /**
@@ -58,9 +61,11 @@ public class DaoPompier {
         
         Pompier p = null ;
         try{
-            requeteSql = cnx.prepareStatement("select pom_id, pom_nom, pom_prenom, cas_id, cas_nom " +
+            requeteSql = cnx.prepareStatement("select pom_id, pom_nom, pom_prenom, pom_dateNaiss, pom_indice, cas_id, cas_nom, gra_id, gra_libelle " +
                          " from pompier inner join caserne  " +
                          " on pom_caserne_id = cas_id "+
+                         " inner join grade "+
+                         " on gra_id = pom_grade_id "+
                          " where pom_id= ? ");
             requeteSql.setInt(1, idPompier);
             resultatRequete = requeteSql.executeQuery();
@@ -71,11 +76,23 @@ public class DaoPompier {
                     p.setId(resultatRequete.getInt("pom_id"));
                     p.setNom(resultatRequete.getString("pom_nom"));
                     p.setPrenom(resultatRequete.getString("pom_prenom"));
-                Caserne c = new Caserne();
+                    
+                    Date dateNaiss = resultatRequete.getDate("pom_dateNaiss");
+                    p.setDateNaiss(dateNaiss.toLocalDate());
+                    
+                    p.setIndice(resultatRequete.getInt("pom_indice"));
+                    
+                    Caserne c = new Caserne();
                     c.setId(resultatRequete.getInt("cas_id"));
                     c.setNom(resultatRequete.getString("cas_nom"));
+                    
+                    Grade g = new Grade();
+                    g.setId(resultatRequete.getInt("gra_id"));
+                    g.setLibelle(resultatRequete.getString("gra_libelle"));
+                    
                 
                 p.setUneCaserne(c);
+                p.setUnGrade(g);
                 
                 
             }

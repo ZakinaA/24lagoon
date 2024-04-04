@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Pompier"%>
+<%@page import="model.Fonction"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +15,9 @@
         <title>SDIS WEB</title>
     </head>
     <body>
+        <%
+            ArrayList<Fonction> lesFonctions = (ArrayList)request.getAttribute("pLesFonctions");
+        %>
         <%
             Pompier p = (Pompier)request.getAttribute("pPompier");
         %>
@@ -24,6 +29,39 @@
             <tr>
                 <td>Caserne : </td><td><%  out.println(p.getUneCaserne().getNom());%></td>
             </tr>
+             <tr>
+                <td>Grade : </td><td><%  out.println(p.getUnGrade().getLibelle());%></td>
+            </tr>
+            <tr>
+                <td>Date Naissance : </td><td><%  out.println(p.getDateNaiss());%></td>
+            </tr>
+            <tr>
+                <td>Indice : </td><td><%  out.println(p.getIndice());%></td>
+            </tr>
+        </table>
+            <table>  
+            <thead>
+                <tr>             
+                    <th>Id</th>
+                    <th>Libelle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <%
+                        for (Fonction f : lesFonctions)
+                        {              
+                            out.println("<tr><td>");
+                            out.println(f.getId());
+                            out.println("</td>");
+
+                            out.println("<td>");
+                            out.println(f.getLibelle());
+                            out.println("</td>");                 
+                        }
+                    %>
+                </tr>
+            </tbody>
         </table>
     </body>
 </html>

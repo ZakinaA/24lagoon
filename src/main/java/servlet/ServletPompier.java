@@ -5,6 +5,7 @@
 package servlet;
 
 import database.DaoCaserne;
+import database.DaoFonction;
 import database.DaoPompier;
 import form.FormPompier;
 import jakarta.servlet.ServletContext;
@@ -17,6 +18,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 import java.util.ArrayList;
 import model.Caserne;
+import model.Fonction;
 import model.Pompier;
 
 /**
@@ -92,10 +94,15 @@ public class ServletPompier extends HttpServlet {
         {  
             // tout paramètre récupéré de la request Http est de type String
             // Il est donc nécessaire de caster le paramètre idPompier en int
+            
             int idPompier = Integer.parseInt((String)request.getParameter("idPompier"));
             System.out.println( "pompier à afficher = " + idPompier);
             Pompier p= DaoPompier.getPompierById(cnx, idPompier);
             request.setAttribute("pPompier", p);
+            
+            ArrayList<Fonction> lesFonctions = DaoFonction.getLesFonctionsPompierById(cnx, idPompier);
+            request.setAttribute("pLesFonctions", lesFonctions);
+            
             getServletContext().getRequestDispatcher("/vues/pompier/consulterPompier.jsp").forward(request, response);       
            
            
@@ -105,6 +112,7 @@ public class ServletPompier extends HttpServlet {
         {                   
             ArrayList<Caserne> lesCasernes = DaoCaserne.getLesCasernes(cnx);
             request.setAttribute("pLesCasernes", lesCasernes);
+            
             this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterPompier.jsp" ).forward( request, response );
         }
         
