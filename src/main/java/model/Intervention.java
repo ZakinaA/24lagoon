@@ -6,6 +6,7 @@ package model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,6 +21,10 @@ public class Intervention {
     private LocalTime heureArrivee;
     private LocalTime duree;
     private Caserne caserne;
+    private ArrayList<Pompier> lesPompiers;
+    private ArrayList<Vehicule> lesVehicules;
+
+
     
     public Intervention() {
     }
@@ -87,5 +92,35 @@ public class Intervention {
     
     public void setCaserne(Caserne caserne) {
         this.caserne = caserne;
+    }
+
+    public ArrayList<Pompier> getLesPompiers() {
+        return lesPompiers;
+    }
+
+    public void setLesPompiers(ArrayList<Pompier> lesPompiers) {
+        this.lesPompiers = lesPompiers;
+    }
+    
+    public void addUnPompier(Pompier unPompier){
+        if (lesPompiers == null){
+            lesPompiers = new ArrayList<Pompier>();
+        }
+        lesPompiers.add(unPompier);
+    }
+
+    public ArrayList<Vehicule> getLesVehicules() {
+        return lesVehicules;
+    }
+
+    public void setLesVehicules(ArrayList<Vehicule> lesVehicules) {
+        this.lesVehicules = lesVehicules;
+    }
+    
+     public void addUnVehicule(Vehicule unVehicule){
+        if (lesVehicules == null){
+            lesVehicules = new ArrayList<Vehicule>();
+        }
+        lesVehicules.add(unVehicule);
     }
 }
