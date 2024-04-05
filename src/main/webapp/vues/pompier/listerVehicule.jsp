@@ -42,9 +42,9 @@
                         {              
                             out.println("<tr><td>");
                             out.println(v.getId());
-                            out.println("</td>");
+                            out.println("</a></td>");
 
-                            out.println("<td>");
+                            out.println("<td><a href ='../ServletVehicule/consulter?idVehicule="+ v.getId()+ "'>");
                             out.println(v.getImmatriculation());
                             out.println("</td>");;
                             
