@@ -5,9 +5,12 @@
 package form;
 
 import jakarta.servlet.http.HttpServletRequest;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import model.Caserne;
+import model.Grade;
 import model.Pompier;
 
 /**
@@ -17,7 +20,7 @@ import model.Pompier;
 public class FormPompier {
     
      private String resultat;
-    private Map<String, String> erreurs      = new HashMap<String, String>();
+    private Map<String, String> erreurs = new HashMap<String, String>();
 
     public String getResultat() {
         return resultat;
@@ -60,10 +63,17 @@ public class FormPompier {
       
         Pompier p  = new Pompier();
          
+        
         String nom = getDataForm( request, "nom" );
         String prenom = getDataForm( request, "prenom");
-        int idPompier = Integer.parseInt((String)getDataForm( request, "idPompier" ));
-       
+    
+        String dateNaissanceStr = getDataForm(request, "dateNaiss");
+        LocalDate dateNaissance = LocalDate.parse(dateNaissanceStr);
+        
+        int indice = Integer.parseInt((String)getDataForm( request, "indice" ));
+        int idCaserne = Integer.parseInt((String)getDataForm( request, "idCaserne" ));
+        int idGrade = Integer.parseInt((String)getDataForm( request, "idGrade" ));
+
       
         try {
              validationNom( nom );
@@ -80,8 +90,10 @@ public class FormPompier {
          
       
         p.setPrenom(prenom);
-
-        p.setUneCaserne(new Caserne(idPompier));
+        p.setDateNaiss(dateNaissance);
+        p.setIndice(indice);
+        p.setUneCaserne(new Caserne(idCaserne));
+        p.setUnGrade(new Grade(idGrade));
         
         return p ;
     }
