@@ -22,6 +22,8 @@ public class Pompier {
     private Caserne uneCaserne ;
     private Grade unGrade;
     private ArrayList<Fonction> lesFonctions;
+    private ArrayList<Intervention> lesInterventions;
+
 
     public Pompier() {
     }
@@ -114,6 +116,21 @@ public class Pompier {
             lesFonctions = new ArrayList<Fonction>();
         }
         lesFonctions.add(uneFonction);
+    }
+
+    public ArrayList<Intervention> getLesInterventions() {
+        return lesInterventions;
+    }
+
+    public void setLesInterventions(ArrayList<Intervention> lesInterventions) {
+        this.lesInterventions = lesInterventions;
+    }
+    
+    public void addUneIntervention(Intervention uneIntervention){
+        if (lesInterventions == null){
+            lesInterventions = new ArrayList<Intervention>();
+        }
+        lesInterventions.add(uneIntervention);
     }
     
 }
