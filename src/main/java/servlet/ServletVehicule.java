@@ -4,6 +4,7 @@
  */
 package servlet;
 
+import database.DaoIntervention;
 import database.DaoVehicule;
 import jakarta.servlet.ServletContext;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 import java.util.ArrayList;
+import model.Intervention;
 import model.Vehicule;
 
 /**
@@ -81,6 +83,16 @@ public class ServletVehicule extends HttpServlet {
             request.setAttribute("vLesVehicules", lesVehicules);
             System.out.println("lister véhicules - nombres de véhicules récupérés" + lesVehicules.size());
             getServletContext().getRequestDispatcher("/vues/pompier/listerVehicule.jsp").forward(request, response);
+        }
+        
+        if(url.equals("/sdisweb/ServletVehicule/consulter"))
+        {              
+            int idVehicule = Integer.parseInt((String)request.getParameter("idVehicule"));
+
+            ArrayList<Intervention> lesInterventions = DaoIntervention.getInterventionVehiculeById(cnx, idVehicule);
+            request.setAttribute("vLesVehicules", lesInterventions);
+            
+            getServletContext().getRequestDispatcher("/vues/pompier/consulterVehicule.jsp").forward(request, response);
         }
     }
 
