@@ -40,7 +40,7 @@ public class DaoVehicule {
                         v.setDateOrigine(dateOrigine.toLocalDate());
                         Date dateRevision = resultatRequete.getDate("veh_dateRevision");
                         v.setDateRevision(dateRevision.toLocalDate());
-                    TypeVehicule t = new TypeVehicule();
+                        TypeVehicule t = new TypeVehicule();
                         t.setNom(resultatRequete.getString("typ_nom"));
                         t.setCaracteristiques(resultatRequete.getString("typ_caracteristiques"));
 

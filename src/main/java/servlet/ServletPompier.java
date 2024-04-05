@@ -6,6 +6,7 @@ package servlet;
 
 import database.DaoCaserne;
 import database.DaoFonction;
+import database.DaoGrade;
 import database.DaoPompier;
 import form.FormPompier;
 import jakarta.servlet.ServletContext;
@@ -19,6 +20,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import model.Caserne;
 import model.Fonction;
+import model.Grade;
 import model.Pompier;
 
 /**
@@ -113,12 +115,11 @@ public class ServletPompier extends HttpServlet {
             ArrayList<Caserne> lesCasernes = DaoCaserne.getLesCasernes(cnx);
             request.setAttribute("pLesCasernes", lesCasernes);
             
+            ArrayList<Grade> lesGrades = DaoGrade.getLesGrades(cnx);
+            request.setAttribute("pLesGrades", lesGrades);
+            
             this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterPompier.jsp" ).forward( request, response );
         }
-        
-        
-        
-        
     }
 
     /**
@@ -160,6 +161,8 @@ public class ServletPompier extends HttpServlet {
             // il y a des erreurs. On réaffiche le formulaire avec des messages d'erreurs
             ArrayList<Caserne> lesCasernes = DaoCaserne.getLesCasernes(cnx);
             request.setAttribute("pLesCasernes", lesCasernes);
+            ArrayList<Grade> lesGrades = DaoGrade.getLesGrades(cnx);
+            request.setAttribute("pLesGrades", lesGrades);
             this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterPompier.jsp" ).forward( request, response );
         }
         

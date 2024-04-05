@@ -19,6 +19,10 @@ public class Grade {
     public Grade() {
     }
 
+    public Grade(int id) {
+        this.id = id;
+    }
+
     public Grade(int id, String libelle) {
         this.id = id;
         this.libelle = libelle;

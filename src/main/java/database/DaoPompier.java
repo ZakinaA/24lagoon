@@ -110,15 +110,22 @@ public class DaoPompier {
         int idGenere = -1;
         try
         {
+            
             //preparation de la requete
             // id (clé primaire de la table client) est en auto_increment,donc on ne renseigne pas cette valeur
             // la paramètre RETURN_GENERATED_KEYS est ajouté à la requête afin de pouvoir récupérer l'id généré par la bdd (voir ci-dessous)
             // supprimer ce paramètre en cas de requête sans auto_increment.
-            requeteSql=connection.prepareStatement("INSERT INTO pompier ( pom_nom, pom_prenom, pom_caserne_id)\n" +
-                    "VALUES (?,?,?)", requeteSql.RETURN_GENERATED_KEYS );
+            requeteSql=connection.prepareStatement("INSERT INTO pompier ( pom_nom, pom_prenom, pom_dateNaiss, pom_indice, pom_caserne_id, pom_grade_id)\n" +
+                    "VALUES (?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS );
             requeteSql.setString(1, p.getNom());
             requeteSql.setString(2, p.getPrenom());
-            requeteSql.setInt(3, p.getUneCaserne().getId());
+            LocalDate dateNaissance = p.getDateNaiss();
+            Date dateNaiss = Date.valueOf(dateNaissance);
+            requeteSql.setDate(3,dateNaiss);
+            requeteSql.setInt(4, p.getIndice());
+            requeteSql.setInt(5, p.getUneCaserne().getId());
+            requeteSql.setInt(6, p.getUnGrade().getId());
+
 
            /* Exécution de la requête */
             requeteSql.executeUpdate();
