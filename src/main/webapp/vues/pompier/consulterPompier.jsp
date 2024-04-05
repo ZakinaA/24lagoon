@@ -47,21 +47,19 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <%
-                        for (Fonction f : lesFonctions)
-                        {              
-                            out.println("<tr><td>");
-                            out.println(f.getId());
-                            out.println("</td>");
-
-                            out.println("<td>");
-                            out.println(f.getLibelle());
-                            out.println("</td>");                 
-                        }
-                    %>
-                </tr>
-            </tbody>
+                <% if (lesFonctions != null && !lesFonctions.isEmpty()) { %>
+                    <% for (Fonction f : lesFonctions) { %>
+                        <tr>
+                            <td><%= f.getId() %></td>
+                            <td><%= f.getLibelle() %></td>                 
+                        </tr>
+                    <% } %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="2">Aucune fonction trouvée</td>
+                    </tr>
+                <% } %>
+        </tbody>    
         </table>
     </body>
 </html>
