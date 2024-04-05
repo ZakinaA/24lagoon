@@ -5,6 +5,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,7 +18,9 @@ public class Vehicule {
     private LocalDate dateOrigine;
     private LocalDate dateRevision;
     private TypeVehicule typeVehicule;
+    private ArrayList<Intervention> lesInterventions;
 
+    
     public Vehicule() {
     }
 
@@ -66,5 +69,20 @@ public class Vehicule {
 
     public void setTypeVehicule(TypeVehicule typeVehicule) {
         this.typeVehicule = typeVehicule;
+    }
+
+    public ArrayList<Intervention> getLesInterventions() {
+        return lesInterventions;
+    }
+
+    public void setLesInterventions(ArrayList<Intervention> lesInterventions) {
+        this.lesInterventions = lesInterventions;
+    }
+    
+    public void addUneIntervention(Intervention uneIntervention){
+        if (lesInterventions == null){
+            lesInterventions = new ArrayList<Intervention>();
+        }
+        lesInterventions.add(uneIntervention);
     }
 }
