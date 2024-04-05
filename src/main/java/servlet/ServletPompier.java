@@ -7,6 +7,7 @@ package servlet;
 import database.DaoCaserne;
 import database.DaoFonction;
 import database.DaoGrade;
+import database.DaoIntervention;
 import database.DaoPompier;
 import form.FormPompier;
 import jakarta.servlet.ServletContext;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import model.Caserne;
 import model.Fonction;
 import model.Grade;
+import model.Intervention;
 import model.Pompier;
 
 /**
@@ -104,6 +106,9 @@ public class ServletPompier extends HttpServlet {
             
             ArrayList<Fonction> lesFonctions = DaoFonction.getLesFonctionsPompierById(cnx, idPompier);
             request.setAttribute("pLesFonctions", lesFonctions);
+            
+            ArrayList<Intervention> lesInterventions = DaoIntervention.getInterventionPompierById(cnx, idPompier);
+            request.setAttribute("pLesInterventions", lesInterventions);
             
             getServletContext().getRequestDispatcher("/vues/pompier/consulterPompier.jsp").forward(request, response);       
            

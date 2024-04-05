@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Pompier"%>
 <%@page import="model.Fonction"%>
+<%@page import="model.Intervention"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
@@ -17,6 +18,10 @@
     <body>
         <%
             ArrayList<Fonction> lesFonctions = (ArrayList)request.getAttribute("pLesFonctions");
+        %>
+        
+         <%
+            ArrayList<Intervention> lesInterventions = (ArrayList)request.getAttribute("pLesInterventions");
         %>
         <%
             Pompier p = (Pompier)request.getAttribute("pPompier");
@@ -57,6 +62,37 @@
                 <% } else { %>
                     <tr>
                         <td colspan="2">Aucune fonction trouvée</td>
+                    </tr>
+                <% } %>
+        </tbody>    
+        </table>
+        <table>  
+            <thead>
+                <tr>             
+                    <th>Id</th>
+                    <th>Lieu</th>
+                    <th>Date</th>
+                    <th>Heure d'appel</th>
+                    <th>Heure d'Arrivée</th>
+                    <th>Durée</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <% if (lesInterventions != null && !lesInterventions.isEmpty()) { %>
+                    <% for (Intervention i : lesInterventions) { %>
+                        <tr>
+                            <td><%= i.getId() %></td>
+                            <td><%= i.getLieu() %></td>    
+                            <td><%= i.getDate() %></td>                 
+                            <td><%= i.getHeureAppel() %></td>                 
+                            <td><%= i.getHeureArrivee() %></td>                 
+                            <td><%= i.getDuree() %></td>                 
+                        </tr>
+                    <% } %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="2">Aucune Intervention trouvée</td>
                     </tr>
                 <% } %>
         </tbody>    
