@@ -19,5 +19,7 @@ public class TestDaoIntervention {
         System.out.println ("nombre d'intervention=" + DaoIntervention.getInterventionCaserneById(cnx,1).size());
         
         System.out.println ("nombre d'intervention du pompier 1 =" + DaoIntervention.getInterventionPompierById(cnx,2).size());
+        
+        System.out.println ("nombre d'intervention du véhicule 3 =" + DaoIntervention.getInterventionVehiculeById(cnx,3).size());
     }
 }
