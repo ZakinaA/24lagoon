@@ -7,7 +7,9 @@ package test;
 import database.ConnexionBdd;
 import database.DaoPompier;
 import java.sql.Connection;
+import java.time.LocalDate;
 import model.Caserne;
+import model.Grade;
 import model.Pompier;
 
 /**
@@ -28,9 +30,13 @@ public class TestDaoPompier {
                 + " " + DaoPompier.getPompierById(cnx,1).getUneCaserne().getNom());
                   
         Pompier p = new Pompier();
-        p.setNom("CHAUVEL");
-        p.setPrenom("Jules");
+        p.setNom("ROBIN");
+        p.setPrenom("Alexis");
+        LocalDate dateNaissance = LocalDate.parse("2024-02-22");
+        p.setDateNaiss(dateNaissance);
+        p.setIndice(159);
         p.setUneCaserne(new Caserne(1));
+        p.setUnGrade(new Grade(1));
         
         p = DaoPompier.addPompier(cnx, p);
         System.out.println("le nouveau pompier a reçu l id = " + p.getId());
