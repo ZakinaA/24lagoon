@@ -19,7 +19,7 @@
         <title>APPLICATION DE GESTION SDIS CALVADOS</title>
     </head>
     <body>
-        <h1>Liste des fonctions</h1>
+        <h1>Liste des situations</h1>
          <%
             ArrayList<Situation> lesSituations = (ArrayList)request.getAttribute("sLesSituations");
          %>
@@ -27,14 +27,14 @@
           <table>  
             <thead>
                 <tr>             
-                    <th>id</th>
+                    <th>Id</th>
                     <th>Libelle</th>         
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <%
-                        for (Situations s : lesSituations)
+                        for (Situation s : lesSituations)
                         {              
                             out.println("<tr><td>");
                             out.println(s.getId());
