@@ -55,11 +55,11 @@ public class DaoGrade {
      public static ArrayList<Pompier> getLesPompiersGradeById(Connection cnx, int idGrade){
          ArrayList<Pompier> lesPompiers = new ArrayList<Pompier>();
             try{
-                PreparedStatement requeteSql = cnx.prepareStatement("SELECT pom_id, pom_nom, pom_prenom " +
+                requeteSql = cnx.prepareStatement("SELECT pom_id, pom_nom, pom_prenom " +
                              "FROM pompier " +
                              "WHERE pom_grade_id = ?");
                 requeteSql.setInt(1, idGrade);
-                ResultSet resultatRequete = requeteSql.executeQuery();
+                resultatRequete = requeteSql.executeQuery();
 
                 while (resultatRequete.next()){
                     Pompier p = new Pompier();
