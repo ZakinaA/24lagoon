@@ -30,8 +30,8 @@
                 <% if (lesSituations != null && !lesSituations.isEmpty()) { %>
                     <% for (Situation s : lesSituations) { %>
                         <tr>
-                            <td><%= i.getId() %></td>
-                            <td><%= i.getLibelle() %></td>                    
+                            <td><%= s.getId() %></td>
+                            <td><%= s.getLibelle() %></td>                    
 
                         </tr>
                     <% } %>
