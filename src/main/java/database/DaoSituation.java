@@ -1,0 +1,48 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package database;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import model.Situation;
+
+/**
+ *
+ * @author Minh-Tri
+ */
+public class DaoSituation {
+    Connection cnx;
+    static PreparedStatement requeteSql = null;
+    static ResultSet resultatRequete = null;
+    
+         public static ArrayList<Situation> getLesSituations(Connection cnx){
+        
+            ArrayList<Situation> lesSituations = new ArrayList<Situation>();
+            try{
+                requeteSql = cnx.prepareStatement("SELECT sit_id, sit_libelle" +
+                                                    "FROM situation" +
+                                                    "WHERE sit_id = ?;");
+                resultatRequete = requeteSql.executeQuery();
+
+                while (resultatRequete.next()){
+
+                    Situation s = new Situation();
+                        s.setId(resultatRequete.getInt("sit_id"));
+                        s.setLibelle(resultatRequete.getString("sit_libelle"));
+
+                }
+
+            }
+            catch (SQLException e){
+                e.printStackTrace();
+                System.out.println("La requête de getLesSituations a généré une erreur");
+            }
+            return lesSituations;
+         }
+    
+}
