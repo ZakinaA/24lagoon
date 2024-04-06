@@ -77,7 +77,7 @@ public class ServletSituation extends HttpServlet {
         if(url.equals("/sdisweb/ServletSituation/lister"))
         {              
             ArrayList<Situation> lesSituations = DaoSituation.getLesSituations(cnx);
-            request.setAttribute("slesSituations", lesSituations);
+            request.setAttribute("sLesSituations", lesSituations);
             System.out.println("lister situations - nombres de situation récupérés" + lesSituations.size());
             getServletContext().getRequestDispatcher("/vues/pompier/listerSituation.jsp").forward(request, response);
         }
