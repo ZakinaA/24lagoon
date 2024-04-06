@@ -18,7 +18,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>APPLICATION DE GESTION SDIS CALVADOS</title>
     </head>
-    <body>
         <h1>Liste des situations</h1>
          <%
             ArrayList<Situation> lesSituations = (ArrayList)request.getAttribute("sLesSituations");
@@ -34,15 +33,15 @@
             <tbody>
                 <tr>
                     <%
-                        for (Situation s : lesSituations)
+                        for (Situation s : LesSituations)
                         {              
                             out.println("<tr><td>");
                             out.println(s.getId());
                             out.println("</a></td>");
 
-                            out.println("<td><a href ='../ServletSituation/consulter?idSituation="+ f.getId()+ "'>");
+                            out.println("<tr><td>");
                             out.println(s.getLibelle());
-                            out.println("</td>");;
+                            out.println("</td>");
                         }
                     %>
                 </tr>
