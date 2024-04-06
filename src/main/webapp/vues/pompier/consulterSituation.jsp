@@ -28,7 +28,7 @@
             </thead>
             <tbody>
                 <% if (lesSituations != null && !lesSituations.isEmpty()) { %>
-                    <% for (Situations s : lesSituations) { %>
+                    <% for (Situation s : lesSituations) { %>
                         <tr>
                             <td><%= i.getId() %></td>
                             <td><%= i.getLibelle() %></td>                    
