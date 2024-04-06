@@ -79,7 +79,7 @@ public class DaoFonction {
     public static ArrayList<Fonction> getLesFonctionsPompierById(Connection cnx, int idPompier){
          ArrayList<Fonction> lesFonctions = new ArrayList<Fonction>();
             try{
-                PreparedStatement requeteSql = cnx.prepareStatement("select fon_id, fon_libelle "
+                requeteSql = cnx.prepareStatement("select fon_id, fon_libelle "
                                                                     + "from fonction "
                                                                     + "join pompier_fonction "
                                                                     + "on fonction_id_pompierfonction = fon_id "
@@ -87,7 +87,7 @@ public class DaoFonction {
                                                                     + "on pom_id_pompierfonction = pom_id "
                                                                     + "where pom_id = ?");
                 requeteSql.setInt(1, idPompier);
-                ResultSet resultatRequete = requeteSql.executeQuery();
+                resultatRequete = requeteSql.executeQuery();
 
                 while (resultatRequete.next()){
                     Fonction f = new Fonction();

@@ -34,6 +34,11 @@
         <servlet-class>servlet.ServletSurgrade</servlet-class>
     </servlet>
     
+    <servlet>
+        <servlet-name>ServletIntervention</servlet-name>
+        <servlet-class>servlet.ServletIntervention</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>ServletPompier</servlet-name>
         <url-pattern>/ServletPompier/lister</url-pattern>
@@ -92,6 +97,11 @@
     <servlet-mapping>
         <servlet-name>ServletSurgrade</servlet-name>
         <url-pattern>/ServletSurgrade/lister</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>ServletIntervention</servlet-name>
+        <url-pattern>/ServletIntervention/lister</url-pattern>
     </servlet-mapping>
     
     <session-config>
