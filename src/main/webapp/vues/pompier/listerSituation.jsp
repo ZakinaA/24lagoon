@@ -27,21 +27,22 @@
             <thead>
                 <tr>             
                     <th>Id</th>
-                    <th>Libelle</th>         
+                    <th>Libelle</th>    
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <%
-                        for (Situation s : LesSituations)
+                        for (Situation s : lesSituations)
                         {              
                             out.println("<tr><td>");
                             out.println(s.getId());
-                            out.println("</a></td>");
-
-                            out.println("<tr><td>");
+                            out.println("</td>");
+                            
+                            out.println("<td>");
                             out.println(s.getLibelle());
                             out.println("</td>");
+
                         }
                     %>
                 </tr>
