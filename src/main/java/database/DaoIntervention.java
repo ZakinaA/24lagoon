@@ -177,4 +177,66 @@ public class DaoIntervention {
         }
         return lesInterventions;
     }
+    
+    public static ArrayList<Intervention> getLesInterventionsTrieesParDateAsc(Connection cnx) {
+    ArrayList<Intervention> lesInterventions = new ArrayList<>();
+    try {
+        requeteSql = cnx.prepareStatement("SELECT int_id, int_lieu, int_date, int_heureAppel, int_heureArrivee, int_duree FROM intervention ORDER BY int_date ASC");
+        resultatRequete = requeteSql.executeQuery();
+        
+        while (resultatRequete.next()) {
+            Intervention i = new Intervention();
+                    i.setId(resultatRequete.getInt("int_id"));
+                    i.setLieu(resultatRequete.getString("int_lieu"));
+      
+                    Date lieu = resultatRequete.getDate("int_date");
+                    i.setDate(lieu.toLocalDate());
+                    
+                    Time heureAppel = resultatRequete.getTime("int_heureAppel");
+                    i.setHeureAppel(heureAppel.toLocalTime());
+                            
+                    Time heureArrivee = resultatRequete.getTime("int_heureArrivee");
+                    i.setHeureArrivee(heureArrivee.toLocalTime());
+                    
+                    Time duree = resultatRequete.getTime("int_duree");
+                    i.setDuree(duree.toLocalTime());
+            lesInterventions.add(i);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        System.out.println("La requête a généré une erreur");
+    }
+    return lesInterventions;
+}
+
+    public static ArrayList<Intervention> getLesInterventionsTrieesParDateDesc(Connection cnx) {
+        ArrayList<Intervention> lesInterventions = new ArrayList<>();
+        try {
+            requeteSql = cnx.prepareStatement("SELECT int_id, int_lieu, int_date, int_heureAppel, int_heureArrivee, int_duree FROM intervention ORDER BY int_date DESC");
+            resultatRequete = requeteSql.executeQuery();
+
+            while (resultatRequete.next()) {
+                Intervention i = new Intervention();
+                        i.setId(resultatRequete.getInt("int_id"));
+                        i.setLieu(resultatRequete.getString("int_lieu"));
+
+                        Date lieu = resultatRequete.getDate("int_date");
+                        i.setDate(lieu.toLocalDate());
+
+                        Time heureAppel = resultatRequete.getTime("int_heureAppel");
+                        i.setHeureAppel(heureAppel.toLocalTime());
+
+                        Time heureArrivee = resultatRequete.getTime("int_heureArrivee");
+                        i.setHeureArrivee(heureArrivee.toLocalTime());
+
+                        Time duree = resultatRequete.getTime("int_duree");
+                        i.setDuree(duree.toLocalTime());
+                lesInterventions.add(i);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("La requête a généré une erreur");
+        }
+        return lesInterventions;
+    }
 }
