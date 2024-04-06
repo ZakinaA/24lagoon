@@ -70,12 +70,12 @@ public class ServletSituation extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String url = request.getRequestURI();  
 
                  
         if(url.equals("/sdisweb/ServletSituation/lister"))
         {              
-            Connection cnx = null;
             ArrayList<Situation> lesSituations = DaoSituation.getLesSituations(cnx);
             request.setAttribute("slesSituations", lesSituations);
             System.out.println("lister situations - nombres de situation récupérés" + lesSituations.size());
