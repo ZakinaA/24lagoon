@@ -39,6 +39,11 @@
         <servlet-class>servlet.ServletIntervention</servlet-class>
     </servlet>
     
+    <servlet>
+        <servlet-name>ServletSituation</servlet-name>
+        <servlet-class>servlet.ServletSituation</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>ServletPompier</servlet-name>
         <url-pattern>/ServletPompier/lister</url-pattern>
@@ -102,6 +107,11 @@
     <servlet-mapping>
         <servlet-name>ServletIntervention</servlet-name>
         <url-pattern>/ServletIntervention/lister</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>ServletSituation</servlet-name>
+        <url-pattern>/ServletSituation/lister</url-pattern>
     </servlet-mapping>
     
     <session-config>
