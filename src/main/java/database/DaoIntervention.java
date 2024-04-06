@@ -26,15 +26,16 @@ public class DaoIntervention {
     static ResultSet resultatRequete = null;
     
     public static ArrayList<Intervention> getInterventionCaserneById(Connection cnx, int idCaserne){
+        
          ArrayList<Intervention> Intervention = new ArrayList<Intervention>();
             try{
-                PreparedStatement requeteSql = cnx.prepareStatement("select * " +
+                requeteSql = cnx.prepareStatement("select * " +
                                                                     " from intervention "+
                                                                     "inner join caserne "+
                                                                     " on cas_id = int_caserne_id "+
                                                                     " where cas_id = ?");
                 requeteSql.setInt(1, idCaserne);
-                ResultSet resultatRequete = requeteSql.executeQuery();
+                resultatRequete = requeteSql.executeQuery();
 
                 while (resultatRequete.next()){
                     Intervention i = new Intervention();
