@@ -77,9 +77,20 @@ public class ServletIntervention extends HttpServlet {
         if(url.equals("/sdisweb/ServletIntervention/lister"))
         {              
             ArrayList<Intervention> lesInterventions = DaoIntervention.getLesInterventions(cnx);
+            String tri = request.getParameter("tri");
+        
+            if (tri != null && tri.equals("anciennes")) {
+                lesInterventions = DaoIntervention.getLesInterventionsTrieesParDateAsc(cnx); 
+            } else {
+                lesInterventions = DaoIntervention.getLesInterventionsTrieesParDateDesc(cnx);
+            }
+            
             request.setAttribute("iLesInterventions", lesInterventions);
             System.out.println("lister intervention - nombres d'interventions récupérés" + lesInterventions.size());
             getServletContext().getRequestDispatcher("/vues/pompier/listerIntervention.jsp").forward(request, response);
+            
+            
+            
         }
     }
 
