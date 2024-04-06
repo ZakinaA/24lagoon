@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Minh-Tri
@@ -12,6 +14,7 @@ public class Situation {
     
     private int id;
     private String libelle ;
+    private ArrayList<Intervention> lesInterventions;
 
     public Situation() {
     }
@@ -37,5 +40,18 @@ public class Situation {
         this.libelle = libelle;
     }
     
+    /*public ArrayList<Intervention> getLesInterventions() {
+        return lesInterventions;
+    }
+
+    public void setLesInterventions(ArrayList<Intervention> lesInterventions) {
+        this.lesInterventions = lesInterventions;
+    }
     
+    public void addUneIntervention(Intervention uneIntervention){
+        if (lesInterventions == null){
+            lesInterventions = new ArrayList<Intervention>();
+        }
+        lesInterventions.add(uneIntervention);
+    }*/
 }
