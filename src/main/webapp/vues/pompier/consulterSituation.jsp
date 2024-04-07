@@ -15,10 +15,10 @@
     </head>
     <body>
          <%
-            ArrayList<Intervention> lesInterventions = (ArrayList)request.getAttribute("vLesVehicules");
+            ArrayList<Intervention> lesInterventions = (ArrayList)request.getAttribute("sLesSituations");
         %>
        
-        <h1>Voici les interventions du véhicule</h1>
+        <h1>Voici les interventions en fonction des situations</h1>
             <table>  
             <thead>
                 <tr>             
