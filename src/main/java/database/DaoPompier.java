@@ -149,4 +149,40 @@ public class DaoPompier {
         return p ;    
     }
     
+    public static ArrayList<Pompier> getLesPompiersInterventionById(Connection cnx, int idIntervention){
+         ArrayList<Pompier> lesPompiers = new ArrayList<Pompier>();
+            try{
+                requeteSql = cnx.prepareStatement("select pom_id, pom_bip, pom_nom, pom_prenom, pom_dateNaiss, pom_indice " +
+                                                                    "from pompier " +
+                                                                    "join pompier_intervention " +
+                                                                    "on pom_id = pom_id_pompierintervention " +
+                                                                    "join intervention " +
+                                                                    "on int_id = intervention_id_pompierintervention " +
+                                                                    "where int_id = ?");
+                requeteSql.setInt(1, idIntervention);
+                resultatRequete = requeteSql.executeQuery();
+
+                while (resultatRequete.next()){
+                    Pompier p = new Pompier();
+                    p.setId(resultatRequete.getInt("pom_id"));
+                    p.setNom(resultatRequete.getString("pom_nom"));
+                    p.setBip(resultatRequete.getString("pom_bip"));
+                    p.setPrenom(resultatRequete.getString("pom_prenom"));
+                    
+                    Date dateNaiss = resultatRequete.getDate("pom_dateNaiss");
+                    p.setDateNaiss(dateNaiss.toLocalDate());
+                    
+                    p.setIndice(resultatRequete.getInt("pom_indice"));
+ 
+
+                    lesPompiers.add(p); 
+                }
+            }
+            catch (SQLException e){
+                e.printStackTrace();
+                System.out.println("La requête de getLesPompiersInterventionById a généré une erreur");
+                }
+            return lesPompiers;
+            }
+    
 }
