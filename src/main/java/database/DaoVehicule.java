@@ -56,5 +56,39 @@ public class DaoVehicule {
             }
             return lesVehicules;
          }
+         
+    public static ArrayList<Vehicule> getLesVehiculesInterventionById(Connection cnx, int idIntervention){
+         ArrayList<Vehicule> lesVehicules = new ArrayList<Vehicule>();
+            try{
+                requeteSql = cnx.prepareStatement("Select veh_id, veh_immat, veh_dateOrigine, veh_dateRevision " +
+                                                    "From vehicule " +
+                                                    "join intervention_vehicule " +
+                                                    "on veh_id = vehicule_id_interventionvehicule " +
+                                                    "join intervention " +
+                                                    "on int_id = int_id_interventionvehicule " +
+                                                    "where int_id = ?");
+                requeteSql.setInt(1, idIntervention);
+                resultatRequete = requeteSql.executeQuery();
+
+                while (resultatRequete.next()){
+                    Vehicule v = new Vehicule();
+                    v.setId(resultatRequete.getInt("veh_id"));
+                    v.setImmatriculation(resultatRequete.getString("veh_immat"));
+                    
+                    Date dateOrigine = resultatRequete.getDate("veh_dateOrigine");
+                    v.setDateOrigine(dateOrigine.toLocalDate());
+                    
+                    Date dateRevision = resultatRequete.getDate("veh_dateRevision");
+                    v.setDateRevision(dateRevision.toLocalDate());
+                    lesVehicules.add(v); 
+                }
+            }
+            catch (SQLException e){
+                e.printStackTrace();
+                System.out.println("La requête de getLesVehiculesInterventionById a généré une erreur");
+                }
+            return lesVehicules;
+            }
+    
     
 }
