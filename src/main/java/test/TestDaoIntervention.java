@@ -23,5 +23,14 @@ public class TestDaoIntervention {
         System.out.println ("nombre d'intervention du véhicule 3 =" + DaoIntervention.getInterventionVehiculeById(cnx,3).size());
         
         System.out.println ("nombre d'interventions=" + DaoIntervention.getLesInterventions(cnx).size());
+        
+        
+        System.out.println ("L'invervention 1 : " + DaoIntervention.getInterventionById(cnx,1).getLieu() 
+                + " " + DaoIntervention.getInterventionById(cnx,1).getDate() 
+                + " " + DaoIntervention.getInterventionById(cnx,1).getHeureAppel()
+                + " " + DaoIntervention.getInterventionById(cnx,1).getHeureArrivee()
+                + " " + DaoIntervention.getInterventionById(cnx,1).getHeureArrivee()
+                + " " + DaoIntervention.getInterventionById(cnx,1).getDuree()
+                + " " + DaoIntervention.getInterventionById(cnx,1).getCaserne().getNom());
     }
 }
