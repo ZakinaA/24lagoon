@@ -6,6 +6,7 @@ package test;
 
 import database.ConnexionBdd;
 import database.DaoTypeVehicule;
+import database.DaoVehicule;
 import java.sql.Connection;
 
 /**
@@ -16,5 +17,7 @@ public class TestDaoTypeVehicule {
          public static void main (String args[]){
              Connection cnx = ConnexionBdd.ouvrirConnexion();
              System.out.println ("nombre de types véhicules : " + DaoTypeVehicule.getLesTypesVehicules(cnx).size());
+             System.out.println ("nombre de véhicule du type 1 =" + DaoVehicule.getLesVehiculesTypeVehiculeById(cnx,1).size());
+
          }
 }

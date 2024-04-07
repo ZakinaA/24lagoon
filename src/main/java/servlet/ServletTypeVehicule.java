@@ -5,6 +5,7 @@
 package servlet;
 
 import database.DaoTypeVehicule;
+import database.DaoVehicule;
 import jakarta.servlet.ServletContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import model.TypeVehicule;
+import model.Vehicule;
 
 /**
  *
@@ -80,6 +82,24 @@ public class ServletTypeVehicule extends HttpServlet {
             
             System.out.println("lister véhicules - nombres de véhicules récupérés" + lesTypesVehicules.size());
             getServletContext().getRequestDispatcher("/vues/pompier/listerTypeVehicule.jsp").forward(request, response);
+        }
+        
+        if(url.equals("/sdisweb/ServletTypeVehicule/consulter"))
+        {  
+            // tout paramètre récupéré de la request Http est de type String
+            // Il est donc nécessaire de caster le paramètre idPompier en int
+            
+            int idTypeVehicule = Integer.parseInt((String)request.getParameter("idTypeVehicule"));
+            System.out.println( "Type Vehicule à afficher = " + idTypeVehicule);
+
+            
+            ArrayList<Vehicule> lesVehicules = DaoVehicule.getLesVehiculesTypeVehiculeById(cnx, idTypeVehicule);
+            request.setAttribute("vLesVehicules", lesVehicules);
+            
+            
+            getServletContext().getRequestDispatcher("/vues/pompier/consulterTypeVehicule.jsp").forward(request, response);       
+           
+           
         }
     }
 

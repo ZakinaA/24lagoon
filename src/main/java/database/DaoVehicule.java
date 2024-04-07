@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import model.Caserne;
 import model.TypeVehicule;
 import model.Vehicule;
 
@@ -90,5 +91,43 @@ public class DaoVehicule {
             return lesVehicules;
             }
     
+    public static ArrayList<Vehicule> getLesVehiculesTypeVehiculeById(Connection cnx, int idTypeVehicule){
+         ArrayList<Vehicule> lesVehicules = new ArrayList<Vehicule>();
+            try{
+                requeteSql = cnx.prepareStatement("select veh_id, veh_immat, veh_dateOrigine, veh_dateRevision, cas_id, cas_nom \n" +
+                                                "from vehicule " +
+                                                "join caserne " +
+                                                "on cas_id = veh_caserne_id " +
+                                                "join type_vehicule " +
+                                                "on veh_id = typ_id " +
+                                                "where veh_type_id = ?");
+                requeteSql.setInt(1, idTypeVehicule);
+                resultatRequete = requeteSql.executeQuery();
+
+                while (resultatRequete.next()){
+                    Vehicule v = new Vehicule();
+                    v.setId(resultatRequete.getInt("veh_id"));
+                    v.setImmatriculation(resultatRequete.getString("veh_immat"));
+                    
+                    Date dateOrigine = resultatRequete.getDate("veh_dateOrigine");
+                    v.setDateOrigine(dateOrigine.toLocalDate());
+                    
+                    Date dateRevision = resultatRequete.getDate("veh_dateRevision");
+                    v.setDateRevision(dateRevision.toLocalDate());
+                    
+                    Caserne c = new Caserne();
+                    c.setId(resultatRequete.getInt("cas_id"));
+                    c.setNom(resultatRequete.getString("cas_nom"));
+                    
+                    v.setUneCaserne(c);
+                    lesVehicules.add(v); 
+                }
+            }
+            catch (SQLException e){
+                e.printStackTrace();
+                System.out.println("La requête de getLesVehiculesTypeVehiculeById a généré une erreur");
+                }
+            return lesVehicules;
+            }
     
 }

@@ -19,6 +19,7 @@ public class Vehicule {
     private LocalDate dateRevision;
     private TypeVehicule typeVehicule;
     private ArrayList<Intervention> lesInterventions;
+    private Caserne uneCaserne;
 
     
     public Vehicule() {
@@ -85,4 +86,14 @@ public class Vehicule {
         }
         lesInterventions.add(uneIntervention);
     }
+
+    public Caserne getUneCaserne() {
+        return uneCaserne;
+    }
+
+    public void setUneCaserne(Caserne uneCaserne) {
+        this.uneCaserne = uneCaserne;
+    }
+    
+    
 }

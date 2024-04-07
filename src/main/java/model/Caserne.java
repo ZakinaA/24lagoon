@@ -19,6 +19,7 @@ public class Caserne {
     private String ville ;
     private ArrayList<Pompier> lesPompiers ;
     private ArrayList<Intervention> lesInterventions ;
+    private ArrayList<Vehicule> lesVehicules ;
 
     public Caserne() {
     }
@@ -104,5 +105,20 @@ public class Caserne {
             lesInterventions = new ArrayList<Intervention>();
         }
         lesInterventions.add(i);
+    }
+
+    public ArrayList<Vehicule> getLesVehicules() {
+        return lesVehicules;
+    }
+
+    public void setLesVehicules(ArrayList<Vehicule> lesVehicules) {
+        this.lesVehicules = lesVehicules;
+    }
+    
+     public void addIntervention(Vehicule v){
+        if (lesVehicules == null){
+            lesVehicules = new ArrayList<Vehicule>();
+        }
+        lesVehicules.add(v);
     }
 }

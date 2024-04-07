@@ -40,7 +40,7 @@
                             out.println(tv.getId());
                             out.println("</a></td>");
 
-                            out.println("<td>");
+                            out.println("<td><a href ='../ServletTypeVehicule/consulter?idTypeVehicule="+ tv.getId()+ "'>");
                             out.println(tv.getNom());
                             out.println("</td>");;
                             
