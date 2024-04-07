@@ -44,6 +44,11 @@
         <servlet-class>servlet.ServletSituation</servlet-class>
     </servlet>
     
+    <servlet>
+        <servlet-name>ServletTypeVehicule</servlet-name>
+        <servlet-class>servlet.ServletTypeVehicule</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>ServletPompier</servlet-name>
         <url-pattern>/ServletPompier/lister</url-pattern>
@@ -117,6 +122,11 @@
     <servlet-mapping>
         <servlet-name>ServletSituation</servlet-name>
         <url-pattern>/ServletSituation/lister</url-pattern>
+    </servlet-mapping>
+    
+      <servlet-mapping>
+        <servlet-name>ServletTypeVehicule</servlet-name>
+        <url-pattern>/ServletTypeVehicule/lister</url-pattern>
     </servlet-mapping>
     
     <session-config>
