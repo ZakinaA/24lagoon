@@ -40,7 +40,7 @@ public class Situation {
         this.libelle = libelle;
     }
     
-    /*public ArrayList<Intervention> getLesInterventions() {
+    public ArrayList<Intervention> getLesInterventions() {
         return lesInterventions;
     }
 
@@ -53,5 +53,5 @@ public class Situation {
             lesInterventions = new ArrayList<Intervention>();
         }
         lesInterventions.add(uneIntervention);
-    }*/
+    }
 }
