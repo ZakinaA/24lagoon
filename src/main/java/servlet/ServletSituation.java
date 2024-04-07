@@ -4,6 +4,7 @@
  */
 package servlet;
 
+import database.DaoIntervention;
 import database.DaoSituation;
 import jakarta.servlet.ServletContext;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 import java.util.ArrayList;
+import model.Intervention;
 import model.Situation;
 
 /**
@@ -82,15 +84,15 @@ public class ServletSituation extends HttpServlet {
             getServletContext().getRequestDispatcher("/vues/pompier/listerSituation.jsp").forward(request, response);
         }
         
-       /* if(url.equals("/sdisweb/ServletSituation/consulter"))
+        if(url.equals("/sdisweb/ServletSituation/consulter"))
         {              
             int idSituation = Integer.parseInt((String)request.getParameter("idSituation"));
 
-            ArrayList<Situation> lesSituations = DaoIntervention.getInterventionSituationById(cnx, idSituation);
-            request.setAttribute("sLesSituations", lesSituations);
+            ArrayList<Intervention> lesInterventions = DaoIntervention.getInterventionSituationById(cnx, idSituation);
+            request.setAttribute("sLesSituations", lesInterventions);
             
             getServletContext().getRequestDispatcher("/vues/pompier/consulterSituation.jsp").forward(request, response);
-        }*/
+        }
     }
 
     /**
