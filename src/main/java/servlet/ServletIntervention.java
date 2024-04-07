@@ -87,11 +87,18 @@ public class ServletIntervention extends HttpServlet {
             
             request.setAttribute("iLesInterventions", lesInterventions);
             System.out.println("lister intervention - nombres d'interventions récupérés" + lesInterventions.size());
-            getServletContext().getRequestDispatcher("/vues/pompier/listerIntervention.jsp").forward(request, response);
-            
-            
-            
+            getServletContext().getRequestDispatcher("/vues/pompier/listerIntervention.jsp").forward(request, response); 
         }
+        
+        if(url.equals("/sdisweb/ServletIntervention/consulter")) {  
+
+            int idIntervention = Integer.parseInt((String)request.getParameter("idIntervention"));
+            System.out.println( "intervention à afficher = " + idIntervention);
+            Intervention i = DaoIntervention.getInterventionById(cnx, idIntervention);
+            request.setAttribute("iIntervention", i);
+            
+            getServletContext().getRequestDispatcher("/vues/pompier/consulterIntervention.jsp").forward(request, response);  
+      }
     }
 
     /**
