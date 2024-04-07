@@ -21,27 +21,29 @@ public class DaoSituation {
     static ResultSet resultatRequete = null;
     
          public static ArrayList<Situation> getLesSituations(Connection cnx){
-        
-            ArrayList<Situation> lesSituations = new ArrayList<Situation>();
-            try{
-                requeteSql = cnx.prepareStatement("SELECT sit_id, sit_libelle" +
-                                                    "FROM situation");
-                resultatRequete = requeteSql.executeQuery();
 
-                while (resultatRequete.next()){
+        ArrayList<Situation> lesSituations = new ArrayList<Situation>();
+        try{
+            requeteSql = cnx.prepareStatement("select sit_id, sit_libelle " +
+                         " from situation ");
+            resultatRequete = requeteSql.executeQuery();
 
-                    Situation s = new Situation();
-                        s.setId(resultatRequete.getInt("sit_id"));
-                        s.setLibelle(resultatRequete.getString("sit_libelle"));
+            while (resultatRequete.next()){
 
-                }
+                Situation s = new Situation();
+                    s.setId(resultatRequete.getInt("sit_id"));
+                    s.setLibelle(resultatRequete.getString("sit_libelle"));
 
+
+                lesSituations.add(s);
             }
-            catch (SQLException e){
-                e.printStackTrace();
-                System.out.println("La requête de getLesSituations a généré une erreur");
-            }
-            return lesSituations;
-         }
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("La requête de getLesSituations e généré une erreur");
+        }
+        return lesSituations;
+    }
     
 }
