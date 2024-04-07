@@ -25,8 +25,7 @@ public class DaoSituation {
             ArrayList<Situation> lesSituations = new ArrayList<Situation>();
             try{
                 requeteSql = cnx.prepareStatement("SELECT sit_id, sit_libelle" +
-                                                    "FROM situation" +
-                                                    "WHERE sit_id = ?;");
+                                                    "FROM situation");
                 resultatRequete = requeteSql.executeQuery();
 
                 while (resultatRequete.next()){
