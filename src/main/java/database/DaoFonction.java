@@ -52,14 +52,14 @@ public class DaoFonction {
     public static ArrayList<Pompier> getLesPompiersFonctionById(Connection cnx, int idFonction){
          ArrayList<Pompier> lesPompiers = new ArrayList<Pompier>();
             try{
-                PreparedStatement requeteSql = cnx.prepareStatement("SELECT pom_id, pom_nom, pom_prenom from pompier\n" +
+                requeteSql = cnx.prepareStatement("SELECT pom_id, pom_nom, pom_prenom from pompier\n" +
                                                                     "JOIN pompier_fonction \n" +
                                                                     "ON pom_id = pom_id_pompierfonction\n" +
                                                                     "JOIN fonction\n" +
                                                                     "ON fon_id = fonction_id_pompierfonction\n" +
                                                                     "WHERE fon_id = ?");
                 requeteSql.setInt(1, idFonction);
-                ResultSet resultatRequete = requeteSql.executeQuery();
+                resultatRequete = requeteSql.executeQuery();
 
                 while (resultatRequete.next()){
                     Pompier p = new Pompier();

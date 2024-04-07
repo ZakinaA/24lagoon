@@ -50,9 +50,9 @@
             {              
                 out.println("<tr><td>");
                 out.println(i.getId());
-                out.println("</td>");
+                out.println("</a></td>");
 
-                out.println("<td>");
+                out.println("<td><a href ='../ServletIntervention/consulter?idIntervention="+ i.getId()+ "'>");
                 out.println(i.getLieu());
                 out.println("</td>");
 
