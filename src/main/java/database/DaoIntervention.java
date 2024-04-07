@@ -14,6 +14,7 @@ import model.Intervention;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalTime;
+import model.Caserne;
 
 
 /**
@@ -238,5 +239,50 @@ public class DaoIntervention {
             System.out.println("La requête a généré une erreur");
         }
         return lesInterventions;
+    }
+    
+    public static Intervention getInterventionById(Connection cnx, int idIntervention){
+        
+        Intervention i = null ;
+        try{
+            requeteSql = cnx.prepareStatement("select int_id, int_lieu, int_date, int_heureAppel, int_heureArrivee, int_duree, cas_id, cas_nom " +
+                         " from intervention "+
+                         " inner join caserne  " +
+                         " on int_caserne_id = cas_id "+
+                         " where int_id= ? ");
+            requeteSql.setInt(1, idIntervention);
+            resultatRequete = requeteSql.executeQuery();
+            
+            if (resultatRequete.next()){
+                
+                    i = new Intervention();
+                    i.setId(resultatRequete.getInt("int_id"));
+                    i.setLieu(resultatRequete.getString("int_lieu"));
+
+                    Date lieu = resultatRequete.getDate("int_date");
+                    i.setDate(lieu.toLocalDate());
+
+                    Time heureAppel = resultatRequete.getTime("int_heureAppel");
+                    i.setHeureAppel(heureAppel.toLocalTime());
+
+                    Time heureArrivee = resultatRequete.getTime("int_heureArrivee");
+                    i.setHeureArrivee(heureArrivee.toLocalTime());
+
+                    Time duree = resultatRequete.getTime("int_duree");
+                    i.setDuree(duree.toLocalTime());
+ 
+                    Caserne c = new Caserne();
+                    c.setId(resultatRequete.getInt("cas_id"));
+                    c.setNom(resultatRequete.getString("cas_nom"));
+                    
+                
+                i.setCaserne(c);          
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("La requête de getInterventionById  a généré une erreur");
+        }
+        return i ;
     }
 }
