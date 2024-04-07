@@ -110,6 +110,11 @@
     </servlet-mapping>
     
     <servlet-mapping>
+        <servlet-name>ServletIntervention</servlet-name>
+        <url-pattern>/ServletIntervention/consulter</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
         <servlet-name>ServletSituation</servlet-name>
         <url-pattern>/ServletSituation/lister</url-pattern>
     </servlet-mapping>
