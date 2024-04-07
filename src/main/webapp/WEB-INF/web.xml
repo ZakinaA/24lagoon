@@ -124,6 +124,11 @@
         <url-pattern>/ServletSituation/lister</url-pattern>
     </servlet-mapping>
     
+    <servlet-mapping>
+        <servlet-name>ServletSituation</servlet-name>
+        <url-pattern>/ServletSituation/consulter</url-pattern>
+    </servlet-mapping>
+    
       <servlet-mapping>
         <servlet-name>ServletTypeVehicule</servlet-name>
         <url-pattern>/ServletTypeVehicule/lister</url-pattern>
