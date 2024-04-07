@@ -23,6 +23,7 @@ public class Intervention {
     private Caserne caserne;
     private ArrayList<Pompier> lesPompiers;
     private ArrayList<Vehicule> lesVehicules;
+    private ArrayList<Situation> lesSituations;
 
 
     
@@ -122,5 +123,20 @@ public class Intervention {
             lesVehicules = new ArrayList<Vehicule>();
         }
         lesVehicules.add(unVehicule);
+    }
+     
+     public ArrayList<Situation> getLesSituations() {
+        return lesSituations;
+    }
+
+    public void setLesSituations(ArrayList<Situation> lesSituations) {
+        this.lesSituations = lesSituations;
+    }
+    
+     public void addUneSituation(Situation uneSituation){
+        if (lesSituations == null){
+            lesSituations = new ArrayList<Situation>();
+        }
+        lesSituations.add(uneSituation);
     }
 }

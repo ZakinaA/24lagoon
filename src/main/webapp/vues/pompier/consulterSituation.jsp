@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="model.Situation"%>
+<%@page import="model.Intervention"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
@@ -15,23 +15,31 @@
     </head>
     <body>
          <%
-            ArrayList<Situation> lesSituations = (ArrayList)request.getAttribute("sLesSituations");
+            ArrayList<Intervention> lesInterventions = (ArrayList)request.getAttribute("sLesSituations");
         %>
        
-        <h1>Voici les interventions lié à cette situation</h1>
+        <h1>Voici les interventions en fonction des situations</h1>
             <table>  
             <thead>
                 <tr>             
                     <th>Id</th>
-                    <th>Libelle</th>
+                    <th>Lieu</th>
+                    <th>Date</th>
+                    <th>Heure d'appel</th>
+                    <th>Heure d'arriver</th>
+                    <th>Duree</th>
                 </tr>
             </thead>
             <tbody>
-                <% if (lesSituations != null && !lesSituations.isEmpty()) { %>
-                    <% for (Situation s : lesSituations) { %>
+                <% if (lesInterventions != null && !lesInterventions.isEmpty()) { %>
+                    <% for (Intervention i : lesInterventions) { %>
                         <tr>
-                            <td><%= s.getId() %></td>
-                            <td><%= s.getLibelle() %></td>                    
+                            <td><%= i.getId() %></td>
+                            <td><%= i.getLieu() %></td>     
+                            <td><%= i.getDate() %></td>                 
+                            <td><%= i.getHeureAppel() %></td>                 
+                            <td><%= i.getHeureArrivee() %></td>                 
+                            <td><%= i.getDuree() %></td>                 
 
                         </tr>
                     <% } %>

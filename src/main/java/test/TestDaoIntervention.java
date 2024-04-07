@@ -22,6 +22,8 @@ public class TestDaoIntervention {
         
         System.out.println ("nombre d'intervention du véhicule 3 =" + DaoIntervention.getInterventionVehiculeById(cnx,3).size());
         
+        System.out.println ("nombre d'intervention avec la situation 3 =" + DaoIntervention.getInterventionSituationById(cnx,3).size());
+        
         System.out.println ("nombre d'interventions=" + DaoIntervention.getLesInterventions(cnx).size());
         
         

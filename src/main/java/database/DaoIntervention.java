@@ -17,6 +17,7 @@ import java.time.LocalTime;
 import model.Caserne;
 
 
+
 /**
  *
  * @author ts1sio
@@ -138,6 +139,46 @@ public class DaoIntervention {
             catch (SQLException e){
                 e.printStackTrace();
                 System.out.println("La requête de getInterventionVehiculeById a généré une erreur");
+                }
+            return Intervention;
+            }
+    
+    public static ArrayList<Intervention> getInterventionSituationById(Connection cnx, int idSituation){
+         ArrayList<Intervention> Intervention = new ArrayList<Intervention>();
+            try{
+                PreparedStatement requeteSql = cnx.prepareStatement("SELECT int_id, int_lieu, int_date, int_heureAppel, int_heureArrivee, int_duree FROM intervention\n" +
+                                                                        "join intervention_situation\n" +
+                                                                        "on int_id = int_id_interventionsituation\n" +
+                                                                        "join situation \n" +
+                                                                        "on sit_id = sit_id_interventionsituation\n" +
+                                                                        "where sit_id = ?");
+                requeteSql.setInt(1, idSituation);
+                ResultSet resultatRequete = requeteSql.executeQuery();
+
+                while (resultatRequete.next()){
+                    Intervention i = new Intervention();
+                    i.setId(resultatRequete.getInt("int_id"));
+                    i.setLieu(resultatRequete.getString("int_lieu"));
+                    
+                    Date date = resultatRequete.getDate("int_date");
+                    i.setDate(date.toLocalDate());
+
+                    Time heureAppel = resultatRequete.getTime("int_heureAppel");
+                    i.setHeureAppel(heureAppel.toLocalTime());
+                    
+                    Time heureArrivee = resultatRequete.getTime("int_heureArrivee");
+                    i.setHeureArrivee(heureArrivee.toLocalTime());
+                    
+                    Time duree = resultatRequete.getTime("int_duree");
+                    i.setDuree(duree.toLocalTime());
+                    
+                    Intervention.add(i);
+                    
+                }
+            }
+            catch (SQLException e){
+                e.printStackTrace();
+                System.out.println("La requête de getInterventionSituationById a généré une erreur");
                 }
             return Intervention;
             }
