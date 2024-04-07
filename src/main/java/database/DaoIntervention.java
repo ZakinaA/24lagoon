@@ -145,9 +145,12 @@ public class DaoIntervention {
     public static ArrayList<Intervention> getInterventionSituationById(Connection cnx, int idSituation){
          ArrayList<Intervention> Intervention = new ArrayList<Intervention>();
             try{
-                PreparedStatement requeteSql = cnx.prepareStatement("SELECT int_id, int_lieu, int_date, int_heureAppel, int_heureArrivee, int_duree " +
-                                                                    "FROM intervention " +
-                                                                    "WHERE int_id IN (SELECT int_id_interventionsituation FROM intervention_situation WHERE sit_id_interventionsituation = ?)");
+                PreparedStatement requeteSql = cnx.prepareStatement("SELECT int_id, int_lieu, int_date, int_heureAppel, int_heureArrivee, int_duree FROM intervention\n" +
+                                                                        "join intervention_situation\n" +
+                                                                        "on int_id = int_id_interventionsituation\n" +
+                                                                        "join situation \n" +
+                                                                        "on sit_id = sit_id_interventionsituation\n" +
+                                                                        "where sit_id = ?");
                 requeteSql.setInt(1, idSituation);
                 ResultSet resultatRequete = requeteSql.executeQuery();
 
