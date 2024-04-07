@@ -18,11 +18,7 @@ public class TestDaoSituation {
      public static void main (String args[]){
          Connection cnx = ConnexionBdd.ouvrirConnexion();
          
-          ArrayList<Situation> lesSituations = DaoSituation.getLesSituations(cnx);
           System.out.println ("nombre de situation : " + DaoSituation.getLesSituations(cnx).size());
-          for (Situation s : lesSituations){
-          System.out.println(" . "+ s.getId() + " " + s.getLibelle());
-        }
      }
 }
 
