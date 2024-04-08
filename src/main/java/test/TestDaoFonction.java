@@ -33,5 +33,13 @@ public class TestDaoFonction {
             System.out.println("Pompier : " + p.getId() + " " + p.getNom() + " " + p.getPrenom());
         }
             System.out.println ("La fontion 1 s'appelle = " + DaoFonction.getNomFonctionById(cnx,1).getLibelle());
+            
+            
+            Fonction f = new Fonction();
+            f.setLibelle("Chargé de test");
+
+            f = DaoFonction.addFonction(cnx, f);
+            System.out.println("la nouvelle fonction a reçu l id = " + f.getId());
+        
     }
 }

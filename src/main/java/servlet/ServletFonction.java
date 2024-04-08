@@ -5,6 +5,7 @@
 package servlet;
 
 import database.DaoFonction;
+import form.FormFonction;
 import jakarta.servlet.ServletContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -103,6 +104,11 @@ public class ServletFonction extends HttpServlet {
                 getServletContext().getRequestDispatcher("/vues/pompier/consulterFonction.jsp").forward(request, response);             
                 } 
             }
+        
+         if(url.equals("/sdisweb/ServletFonction/ajouter"))
+        {       
+            this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterFonction.jsp" ).forward( request, response );
+        }
     }
 
     /**
@@ -116,7 +122,32 @@ public class ServletFonction extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+            FormFonction form = new FormFonction();
+
+                /* Appel au traitement et à la validation de la requête, et récupération du bean en résultant */
+                Fonction f = form.ajouterFonction(request);
+
+                /* Stockage du formulaire et de l'objet dans l'objet request */
+                request.setAttribute("form", form);
+                request.setAttribute("fFonction", f);
+
+                if (form.getErreurs().isEmpty()) {
+                    Fonction fonctionInsere = DaoFonction.addFonction(cnx, f);
+                    if (fonctionInsere != null) {
+
+                        request.setAttribute("FonctionNom", fonctionInsere);
+                        request.setAttribute( "fFonction", fonctionInsere );
+                        this.getServletContext().getRequestDispatcher("/vues/pompier/consulterFonction.jsp").forward(request, response);
+                    } else {
+                        // Cas où l'insertion en bdd a échoué
+                        // renvoyer vers une page d'erreur 
+                    }
+
+                } else {
+                    // il y a des erreurs. On réaffiche le formulaire avec des messages d'erreurs
+                    this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterFonction.jsp").forward(request, response);
+                }
     }
 
     /**
