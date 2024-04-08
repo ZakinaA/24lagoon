@@ -120,6 +120,11 @@
     </servlet-mapping>
     
     <servlet-mapping>
+        <servlet-name>ServletSurgrade</servlet-name>
+        <url-pattern>/ServletSurgrade/ajouter</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
         <servlet-name>ServletIntervention</servlet-name>
         <url-pattern>/ServletIntervention/lister</url-pattern>
     </servlet-mapping>
