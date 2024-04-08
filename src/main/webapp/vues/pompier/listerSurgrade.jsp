@@ -31,20 +31,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <%
-                        for (Surgrade s : lesSurgrades)
-                        {              
-                            out.println("<tr><td>");
-                            out.println(s.getId());
-                            out.println("</td>");
-
-                            out.println("<td>");
-                            out.println(s.getLibelle());
-                            out.println("</td>");; 
-                        }
-                    %>
-                </tr>
+                <% if (lesSurgrades != null && !lesSurgrades.isEmpty()) { %>
+                    <% for (Surgrade s : lesSurgrades) { %>
+                        <tr>
+                            <td><%= s.getId() %></td>
+                            <td><%= s.getLibelle() %></td>     
+                        </tr>
+                    <% } %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="2">Aucun surgrade trouvé</td>
+                    </tr>
+                <% } %>
             </tbody>
         </table>
     </body>
