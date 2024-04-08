@@ -9,6 +9,7 @@ import database.DaoCaserne;
 import database.DaoPompier;
 import java.sql.Connection;
 import java.util.ArrayList;
+import model.Caserne;
 import model.Pompier;
 
 /**
@@ -30,6 +31,16 @@ public class TestDaoCaserne {
         
         System.out.println ("La caserne 1 s'appelle =" + DaoCaserne.getNomCaserneById(cnx,1).getNom());
 
+        
+        Caserne c = new Caserne();
+        c.setNom("Vire Pompier");
+        c.setRue("14 rue vire");
+        c.setCopos(14500);
+        c.setVille("Vire");
+        
+        c = DaoCaserne.addCaserne(cnx, c);
+        System.out.println("la nouvelle caserne a reçu l id = " + c.getId());
+        
     }
     
 }
