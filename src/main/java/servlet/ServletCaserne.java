@@ -6,6 +6,7 @@ package servlet;
 
 import database.DaoCaserne;
 import database.DaoIntervention;
+import form.FormCaserne;
 import jakarta.servlet.ServletContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -100,12 +101,15 @@ public class ServletCaserne extends HttpServlet {
                 
                 ArrayList<Intervention> i = DaoIntervention.getInterventionCaserneById(cnx, idCaserne);
                 request.setAttribute("pCaserneIntervention", i);
-
-
                 
                 getServletContext().getRequestDispatcher("/vues/pompier/consulterCasernePompier.jsp").forward(request, response);             
                 } 
             }
+        if(url.equals("/sdisweb/ServletCaserne/ajouter"))
+        {       
+            this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterCaserne.jsp" ).forward( request, response );
+        }
+        
     }
 
     /**
@@ -117,10 +121,38 @@ public class ServletCaserne extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
+
+        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+                throws ServletException, IOException {
+
+            FormCaserne form = new FormCaserne();
+
+            /* Appel au traitement et à la validation de la requête, et récupération du bean en résultant */
+            Caserne c = form.ajouterCaserne(request);
+
+            /* Stockage du formulaire et de l'objet dans l'objet request */
+            request.setAttribute("form", form);
+            request.setAttribute("pCaserne", c);
+
+            if (form.getErreurs().isEmpty()) {
+                Caserne caserneInsere = DaoCaserne.addCaserne(cnx, c);
+                if (caserneInsere != null) {
+
+                    request.setAttribute("CaserneNom", caserneInsere);
+                    request.setAttribute( "pCaserne", caserneInsere );
+                    this.getServletContext().getRequestDispatcher("/vues/pompier/consulterCasernePompier.jsp").forward(request, response);
+                } else {
+                    // Cas où l'insertion en bdd a échoué
+                    // renvoyer vers une page d'erreur 
+                }
+
+            } else {
+                // il y a des erreurs. On réaffiche le formulaire avec des messages d'erreurs
+                this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterCaserne.jsp").forward(request, response);
+            }
+        }
+
+
 
     /**
      * Returns a short description of the servlet.
