@@ -37,24 +37,20 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <%
-                        for (Pompier p : lesPompiers)
-                        {              
-                            out.println("<tr><td>");
-                            out.println(p.getId());
-                            out.println("</td>");
-
-                            out.println("<td>");
-                            out.println(p.getNom());
-                            out.println("</td>");;
-
-                            out.println("<td>");
-                            out.println(p.getPrenom());
-                            out.println("</td>");                     
-                        }
-                    %>
-                </tr>
+               <% if (lesPompiers != null && !lesPompiers.isEmpty()) { %>
+                        <% for (Pompier p : lesPompiers) { %>
+                            <tr>
+                                <td><%= p.getId() %></td>
+                                <td><%= p.getNom() %></td>
+                                <td><%= p.getPrenom() %></td>
+                                <!-- Ajoutez d'autres colonnes au besoin -->
+                            </tr>
+                        <% } %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="3">Aucun pompier trouvé</td>
+                        </tr>
+                    <% } %>
             </tbody>
         </table>
     </body>
