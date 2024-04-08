@@ -71,6 +71,11 @@
     
     <servlet-mapping>
         <servlet-name>ServletFonction</servlet-name>
+        <url-pattern>/ServletFonction/ajouter</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>ServletFonction</servlet-name>
         <url-pattern>/ServletFonction/consulter</url-pattern>
     </servlet-mapping>
     
