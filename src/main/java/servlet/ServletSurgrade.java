@@ -5,6 +5,7 @@
 package servlet;
 
 import database.DaoSurgrade;
+import form.FormSurgrade;
 import jakarta.servlet.ServletContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -82,6 +83,12 @@ public class ServletSurgrade extends HttpServlet {
                     //System.out.println("lister eleves - nombres d'élèves récupérés" + lesEleves.size() );
                    getServletContext().getRequestDispatcher("/vues/pompier/listerSurgrade.jsp").forward(request, response);
                 }
+                
+                if(url.equals("/sdisweb/ServletSurgrade/ajouter"))
+            {       
+                this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterSurgrade.jsp" ).forward( request, response );
+                return;
+            }
     }
 
     /**
@@ -95,7 +102,33 @@ public class ServletSurgrade extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+         FormSurgrade form = new FormSurgrade();
+
+                /* Appel au traitement et à la validation de la requête, et récupération du bean en résultant */
+                Surgrade s = form.ajouterSurgrade(request);
+
+                /* Stockage du formulaire et de l'objet dans l'objet request */
+                request.setAttribute("form", form);
+                request.setAttribute("sSurgrade", s);
+
+                if (form.getErreurs().isEmpty()) {
+                    Surgrade surgradeInsere = DaoSurgrade.addSurgrade(cnx, s);
+                    if (surgradeInsere != null) {
+                        
+                        ArrayList<Surgrade> lesSurgrades = DaoSurgrade.getLesSurgrades(cnx);
+                        request.setAttribute("pLesSurgrades", lesSurgrades);
+                        request.setAttribute( "sSurgrade", surgradeInsere );
+                        
+                        this.getServletContext().getRequestDispatcher("/vues/pompier/listerSurgrade.jsp").forward(request, response);
+                    } else {
+                       
+                    }
+
+                } else {
+                    // il y a des erreurs. On réaffiche le formulaire avec des messages d'erreurs
+                    this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterSurgrade.jsp").forward(request, response);
+                }
     }
 
     /**
