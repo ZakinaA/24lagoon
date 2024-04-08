@@ -24,7 +24,7 @@
          <%
             Caserne nom = (Caserne)request.getAttribute("CaserneNom");
          %>
-        <h1>Voici les pompiers de la caserne  <%  out.println(nom.getNom());%></h1>
+        <h1>Voici les pompiers de la caserne  <%  out.println(nom.getNom()); %></h1>
 
             <%
                 ArrayList<Pompier> lesPompiers = (ArrayList)request.getAttribute("pCasernePompier");
@@ -43,71 +43,53 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <%
-                        for (Pompier p : lesPompiers)
-                        {              
-                            out.println("<tr><td>");
-                            out.println(p.getId());
-                            out.println("</td>");
-
-                            out.println("<td>");
-                            out.println(p.getNom());
-                            out.println("</td>");;
-
-                            out.println("<td>");
-                            out.println(p.getPrenom());
-                            out.println("</td>");                     
-                        }
-                    %>
-                </tr>   
+                    <% if (lesPompiers != null && !lesPompiers.isEmpty()) { %>
+                        <% for (Pompier p : lesPompiers) { %>
+                            <tr>
+                                <td><%= p.getId() %></td>
+                                <td><%= p.getNom() %></td>
+                                <td><%= p.getPrenom() %></td>
+                                <!-- Ajoutez d'autres colonnes au besoin -->
+                            </tr>
+                        <% } %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="3">Aucun pompier trouvé</td>
+                        </tr>
+                    <% } %>
             </tbody>
         </table>
             <table>
                 <thead>
-                <tr>             
-                    <th>Id</th>
-                    <th>Lieu</th>
-                    <th>Date</th> 
-                    <th>Heure d'appel</th>
-                    <th>Heure d'arrivée</th>              
-                    <th>Durée</th>              
-                </tr>
-                </thead>
-                <tbody
                     <tr>
-                         <%
-                            for (Intervention i : lesInterventions)
-                            {              
-                                out.println("<tr><td>");
-                                out.println(i.getId());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(i.getLieu());
-                                out.println("</td>");;
-
-                                out.println("<td>");
-                                out.println(i.getDate());
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(i.getHeureAppel());
-                                out.println("</td>");     
-
-                                out.println("<td>");
-                                out.println(i.getHeureArrivee());
-                                out.println("</td>");     
-
-                                out.println("<td>");
-                                out.println(i.getDuree());
-                                out.println("</td>");     
-
-                            }
-                        %>
+                        <th>Id</th>
+                        <th>Lieu</th>
+                        <th>Date</th>
+                        <th>Heure d'appel</th>
+                        <th>Heure d'arrivée</th>
+                        <th>Durée</th>
                     </tr>
+                </thead>
+                <tbody>
+                    <% if (lesInterventions != null && !lesInterventions.isEmpty()) { %>
+                        <% for (Intervention i : lesInterventions) { %>
+                            <tr>
+                                <td><%= i.getId() %></td>
+                                <td><%= i.getLieu() %></td>
+                                <td><%= i.getDate() %></td>
+                                <td><%= i.getHeureAppel() %></td>
+                                <td><%= i.getHeureArrivee() %></td>
+                                <td><%= i.getDuree() %></td>
+                            </tr>
+                        <% } %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="6">Aucune intervention trouvée</td>
+                        </tr>
+                    <% } %>
                 </tbody>
             </table>
+
     </body>
     </body>
 </html>
