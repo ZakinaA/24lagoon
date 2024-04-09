@@ -9,6 +9,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import model.Caserne;
 import model.TypeVehicule;
@@ -130,4 +131,49 @@ public class DaoVehicule {
             return lesVehicules;
             }
     
+    public static Vehicule addVehicule(Connection connection, Vehicule v){      
+        int idGenere = -1;
+        try
+        {
+            
+            //preparation de la requete
+            // id (clé primaire de la table client) est en auto_increment,donc on ne renseigne pas cette valeur
+            // la paramètre RETURN_GENERATED_KEYS est ajouté à la requête afin de pouvoir récupérer l'id généré par la bdd (voir ci-dessous)
+            // supprimer ce paramètre en cas de requête sans auto_increment.
+            requeteSql=connection.prepareStatement("INSERT INTO vehicule ( veh_immat, veh_dateOrigine, veh_dateRevision, veh_type_id, veh_caserne_id)\n" +
+                    "VALUES (?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS );
+            requeteSql.setString(1, v.getImmatriculation());
+            
+            LocalDate dateOri = v.getDateOrigine();
+            Date dateOrigine = Date.valueOf(dateOri);
+            requeteSql.setDate(2,dateOrigine);
+            
+            LocalDate dateRevi = v.getDateRevision();
+            Date dateRevision = Date.valueOf(dateRevi);
+            requeteSql.setDate(3,dateRevision);
+            
+            requeteSql.setInt(4, v.getTypeVehicule().getId());
+            requeteSql.setInt(5, v.getUneCaserne().getId());
+
+
+           /* Exécution de la requête */
+            requeteSql.executeUpdate();
+            
+             // Récupération de id auto-généré par la bdd dans la table client
+            resultatRequete = requeteSql.getGeneratedKeys();
+            while ( resultatRequete.next() ) {
+                idGenere = resultatRequete.getInt( 1 );
+                v.setId(idGenere);
+ 
+            }
+            
+         
+        }   
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+        }
+        return v ;    
+    }
 }

@@ -19,6 +19,10 @@ public class TypeVehicule {
     public TypeVehicule() {
     }
 
+    public TypeVehicule(int id) {
+        this.id = id;
+    }
+
     public TypeVehicule(int id, String nom, String caracteristiques) {
         this.id = id;
         this.nom = nom;
