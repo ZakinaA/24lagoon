@@ -5,6 +5,8 @@
 package servlet;
 
 import database.DaoGrade;
+import database.DaoSurgrade;
+import form.FormGrade;
 import jakarta.servlet.ServletContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,6 +19,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import model.Grade;
 import model.Pompier;
+import model.Surgrade;
 
 /**
  *
@@ -101,6 +104,13 @@ public class ServletGrade extends HttpServlet {
                 getServletContext().getRequestDispatcher("/vues/pompier/consulterGrade.jsp").forward(request, response);             
                 } 
             }
+        if(url.equals("/sdisweb/ServletGrade/ajouter"))
+        {                   
+            ArrayList<Surgrade> lesSurgrades = DaoSurgrade.getLesSurgrades(cnx);
+            request.setAttribute("pLesSurgrades", lesSurgrades);
+            
+            this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterGrade.jsp" ).forward( request, response );
+        }
     }
 
     /**
@@ -114,7 +124,38 @@ public class ServletGrade extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        FormGrade form = new FormGrade();
+		
+        /* Appel au traitement et à la validation de la requête, et récupération du bean en résultant */
+        Grade g = form.ajouterGrade(request);
+        
+        /* Stockage du formulaire et de l'objet dans l'objet request */
+        request.setAttribute( "form", form );
+        request.setAttribute( "pGrade", g );
+		
+        if (form.getErreurs().isEmpty()){
+            Grade gradeInsere =  DaoGrade.addGrade(cnx, g);
+            if (gradeInsere != null ){
+                
+                request.setAttribute("GradeNom", gradeInsere);
+                request.setAttribute( "pGrade", gradeInsere );
+                this.getServletContext().getRequestDispatcher("/vues/pompier/consulterGrade.jsp" ).forward( request, response );
+            }
+            else 
+            {
+                // Cas oùl'insertion en bdd a échoué
+                //renvoyer vers une page d'erreur 
+            }
+           
+        }
+        else
+        { 
+            // il y a des erreurs. On réaffiche le formulaire avec des messages d'erreurs
+            ArrayList<Surgrade> lesSurgrades = DaoSurgrade.getLesSurgrades(cnx);
+            request.setAttribute("pLesSurgrades", lesSurgrades);
+            this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterGrade.jsp" ).forward( request, response );
+        }
     }
 
     /**

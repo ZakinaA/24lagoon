@@ -18,6 +18,10 @@ public class Surgrade {
     public Surgrade() {
     }
 
+    public Surgrade(int id) {
+        this.id = id;
+    }
+
     public Surgrade(int id, String libelle) {
         this.id = id;
         this.libelle = libelle;
