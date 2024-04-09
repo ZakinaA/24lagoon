@@ -53,7 +53,7 @@
                 </select>
                 </br>
                 
-                <label for="grade">Caserne : </label>
+                <label for="grade">Grade : </label>
                 <select name="idGrade">
                     <%
                         ArrayList<Grade> lesGrades= (ArrayList)request.getAttribute("pLesGrades");
