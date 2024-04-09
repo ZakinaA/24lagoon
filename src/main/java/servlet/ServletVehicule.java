@@ -4,8 +4,11 @@
  */
 package servlet;
 
+import database.DaoCaserne;
 import database.DaoIntervention;
+import database.DaoTypeVehicule;
 import database.DaoVehicule;
+import form.FormVehicule;
 import jakarta.servlet.ServletContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,7 +19,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 import java.util.ArrayList;
+import model.Caserne;
 import model.Intervention;
+import model.TypeVehicule;
 import model.Vehicule;
 
 /**
@@ -94,6 +99,17 @@ public class ServletVehicule extends HttpServlet {
             
             getServletContext().getRequestDispatcher("/vues/pompier/consulterVehicule.jsp").forward(request, response);
         }
+        
+        if(url.equals("/sdisweb/ServletVehicule/ajouter"))
+        {                   
+            ArrayList<TypeVehicule> LesTypeVehicules = DaoTypeVehicule.getLesTypesVehicules(cnx);
+            request.setAttribute("vLesTypesVehicules", LesTypeVehicules);
+            
+            ArrayList<Caserne> lesCasernes = DaoCaserne.getLesCasernes(cnx);
+            request.setAttribute("cLesCasernes", lesCasernes);
+
+            this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterVehicule.jsp" ).forward( request, response );
+        }
     }
 
     /**
@@ -107,7 +123,42 @@ public class ServletVehicule extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        FormVehicule form = new FormVehicule();
+		
+        /* Appel au traitement et à la validation de la requête, et récupération du bean en résultant */
+        Vehicule v = form.ajouterVehicule(request);
+        
+        /* Stockage du formulaire et de l'objet dans l'objet request */
+        request.setAttribute( "form", form );
+        request.setAttribute( "vVehicule", v );
+		
+        if (form.getErreurs().isEmpty()){
+            Vehicule vehiculeInsere =  DaoVehicule.addVehicule(cnx, v);
+            if (vehiculeInsere != null ){
+                request.setAttribute( "vVehicule", vehiculeInsere );
+                this.getServletContext().getRequestDispatcher("/vues/pompier/consulterVehicule.jsp" ).forward( request, response );
+            }
+            else 
+            {
+                // Cas oùl'insertion en bdd a échoué
+                //renvoyer vers une page d'erreur 
+            }
+           
+        }
+        else
+        { 
+            // il y a des erreurs. On réaffiche le formulaire avec des messages d'erreurs
+            ArrayList<TypeVehicule> LesTypeVehicules = DaoTypeVehicule.getLesTypesVehicules(cnx);
+            request.setAttribute("vLesTypesVehicules", LesTypeVehicules);
+            
+            ArrayList<Caserne> lesCasernes = DaoCaserne.getLesCasernes(cnx);
+            request.setAttribute("cLesCasernes", lesCasernes);
+            
+            this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterVehicule.jsp" ).forward( request, response );
+        }
+        
+
     }
 
     /**
