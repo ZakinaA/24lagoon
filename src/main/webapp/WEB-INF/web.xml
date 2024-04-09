@@ -119,6 +119,11 @@
         <url-pattern>/ServletVehicule/consulter</url-pattern>
     </servlet-mapping>
     
+     <servlet-mapping>
+        <servlet-name>ServletVehicule</servlet-name>
+        <url-pattern>/ServletVehicule/ajouter</url-pattern>
+    </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>ServletSurgrade</servlet-name>
         <url-pattern>/ServletSurgrade/lister</url-pattern>
