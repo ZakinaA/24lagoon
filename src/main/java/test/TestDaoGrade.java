@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import model.Grade;
 import model.Pompier;
+import model.Surgrade;
 
 /**
  *
@@ -33,5 +34,13 @@ public class TestDaoGrade {
                 System.out.println("ID: " + pompier.getId() + ", Nom: " + pompier.getNom() + ", Prénom: " + pompier.getPrenom());
             }
             System.out.println ("Le grade 1 s'appelle = " + DaoGrade.getNomGradeById(cnx,1).getLibelle());
+            
+            Grade g = new Grade();
+            g.setLibelle("Agent");
+            g.setUnSurgrade(new Surgrade(1));
+
+            g = DaoGrade.addGrade(cnx, g);
+            System.out.println("le nouveau grade a reçu l id = " + g.getId());
+        
     }
 }
