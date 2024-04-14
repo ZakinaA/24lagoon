@@ -24,7 +24,7 @@ public class DaoSituation {
 
         ArrayList<Situation> lesSituations = new ArrayList<Situation>();
         try{
-            requeteSql = cnx.prepareStatement("select sit_id, sit_libelle " +
+            requeteSql = cnx.prepareStatement("select sit_id, sit_libelle, sit_description " +
                          " from situation ");
             resultatRequete = requeteSql.executeQuery();
 
@@ -33,6 +33,7 @@ public class DaoSituation {
                 Situation s = new Situation();
                     s.setId(resultatRequete.getInt("sit_id"));
                     s.setLibelle(resultatRequete.getString("sit_libelle"));
+                    s.setDescription(resultatRequete.getString("sit_description"));
 
 
                 lesSituations.add(s);
