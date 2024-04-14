@@ -14,14 +14,16 @@ public class Situation {
     
     private int id;
     private String libelle ;
+    private String description;
     private ArrayList<Intervention> lesInterventions;
 
     public Situation() {
     }
 
-    public Situation(int id, String libelle) {
+    public Situation(int id, String libelle, String description) {
         this.id = id;
         this.libelle = libelle;
+        this.description = description;
     }
 
     public int getId() {
@@ -54,4 +56,14 @@ public class Situation {
         }
         lesInterventions.add(uneIntervention);
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    
 }
