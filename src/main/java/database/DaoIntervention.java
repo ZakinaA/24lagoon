@@ -150,7 +150,7 @@ public class DaoIntervention {
                                                                         "join intervention_situation\n" +
                                                                         "on int_id = int_id_interventionsituation\n" +
                                                                         "join situation \n" +
-                                                                        "on sit_id = sit_id_interventionsituation\n" +
+                                                                        "on sit_id = situation_id_interventionsituation\n" +
                                                                         "where sit_id = ?");
                 requeteSql.setInt(1, idSituation);
                 ResultSet resultatRequete = requeteSql.executeQuery();
