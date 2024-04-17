@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class Grade {
     private int id;
     private String libelle ;
+    private String description;
     private ArrayList<Pompier> lesPompiers;
     private Surgrade UnSurgrade;
 
@@ -23,9 +24,10 @@ public class Grade {
         this.id = id;
     }
 
-    public Grade(int id, String libelle) {
+    public Grade(int id, String libelle, String description) {
         this.id = id;
         this.libelle = libelle;
+        this.description = description;
     }
 
     public int getId() {
@@ -66,4 +68,14 @@ public class Grade {
     public void setUnSurgrade(Surgrade UnSurgrade) {
         this.UnSurgrade = UnSurgrade;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    
 }
