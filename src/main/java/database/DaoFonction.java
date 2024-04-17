@@ -7,6 +7,7 @@ package database;
 import static database.DaoFonction.requeteSql;
 import static database.DaoFonction.resultatRequete;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -52,7 +53,7 @@ public class DaoFonction {
     public static ArrayList<Pompier> getLesPompiersFonctionById(Connection cnx, int idFonction){
          ArrayList<Pompier> lesPompiers = new ArrayList<Pompier>();
             try{
-                requeteSql = cnx.prepareStatement("SELECT pom_id, pom_nom, pom_prenom from pompier\n" +
+                requeteSql = cnx.prepareStatement("SELECT pom_id, pom_nom, pom_prenom, pom_dateNaiss, pom_indice from pompier\n" +
                                                                     "JOIN pompier_fonction \n" +
                                                                     "ON pom_id = pom_id_pompierfonction\n" +
                                                                     "JOIN fonction\n" +
@@ -66,6 +67,12 @@ public class DaoFonction {
                     p.setId(resultatRequete.getInt("pom_id"));
                     p.setNom(resultatRequete.getString("pom_nom"));
                     p.setPrenom(resultatRequete.getString("pom_prenom"));
+                    
+                    Date dateNaiss = resultatRequete.getDate("pom_dateNaiss");
+                    p.setDateNaiss(dateNaiss.toLocalDate());
+                    
+                    p.setIndice(resultatRequete.getInt("pom_indice"));
+                    
                     lesPompiers.add(p); 
                 }
             }
