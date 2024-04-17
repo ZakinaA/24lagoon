@@ -24,7 +24,7 @@ body {
 }
     
 .custom-form {
-    height: 620px;
+    height: 600px;
     top: 50px;
     background-color: white;
     width: 600px; 
@@ -55,7 +55,7 @@ body {
 }
 
 .btn {
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 13px 0; 
     background-color: #425d97;
     color: #fff;
