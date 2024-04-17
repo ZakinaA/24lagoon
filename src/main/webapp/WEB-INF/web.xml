@@ -5,6 +5,10 @@
         <listener-class>database.InitConnexion</listener-class>
     </listener>
     
+    <welcome-file-list>
+        <welcome-file>/vues/LoginPage.jsp</welcome-file>
+    </welcome-file-list>
+
     <servlet>
         <servlet-name>ServletPompier</servlet-name>
         <servlet-class>servlet.ServletPompier</servlet-class>
