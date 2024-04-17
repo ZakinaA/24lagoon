@@ -131,7 +131,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 th {
     color: rgb(49, 49, 49);
-    font-weight: 100;
+    font-weight: 300;
     font-size: 12px;
     text-transform: uppercase;
 }
@@ -194,7 +194,7 @@ select {
 }
 
 h1 {
-    font-weight : 100;
+    font-weight : 400;
     margin-left: 30px;
 }
 
