@@ -289,12 +289,6 @@ nav {
             subMenu.classList.toggle("show");
         }
 
-        // Ajouter un écouteur d'événements au clic sur l'élément de compte
-        accountWrap.addEventListener("click", function(event) {
-            event.stopPropagation(); // Empêche la propagation de l'événement au parent
-            toggleSubMenu();
-        });
-
         // Ajouter un écouteur d'événements pour fermer le sous-menu en cliquant à l'extérieur
         document.addEventListener("click", function(event) {
             if (!accountWrap.contains(event.target)) {
