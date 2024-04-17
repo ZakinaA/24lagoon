@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 </head>
 
-<style>
+<style>    
     body {
     margin: 0;
     padding: 0;
@@ -135,9 +135,8 @@ nav {
 }
 
 .account-item .content {
-    margin-left: 55px;
     padding: 14px 0;
-    padding-left: 12px;
+    padding-left: 65px;
 }
 
 .account-item .content a {
@@ -246,6 +245,27 @@ nav {
     margin-right: 10px;
 }
 
+.zmdi-graduation-cap {
+    margin-right: 10px;
+}
+
+.zmdi-home {
+    margin-right: 10px;
+}
+
+.zmdi-info {
+    margin-right: 10px;
+}
+
+.zmdi-wrench {
+    margin-right: 10px;
+}
+
+.zmdi-toll {
+    margin-right: 10px;
+}
+
+
 .textbot {
     color: #555;
     font-size: 12px;
@@ -295,7 +315,12 @@ nav {
                     <li><a href="/sdisweb/ServletPompier/lister"><i class="zmdi zmdi-fire" style="font-size: 22px;"></i>Pompiers</a></li>
                     <li><a href="/sdisweb/ServletVehicule/lister"><i class="zmdi zmdi-car" style="font-size: 22px;"></i>Véhicules</span></a></li>
                     <li><a href="/sdisweb/ServletSituation/lister"><i class="zmdi zmdi-directions" style="font-size: 22px;"></i>Situations</a></li>
-                    <li><a href="/sdisweb/ServletIntervention/lister" onclick="highlightLink(this)"><i class="zmdi zmdi-face" style="font-size: 22px;"></i>Interventions</a></li>
+                    <li><a href="/sdisweb/ServletIntervention/lister"><i class="zmdi zmdi-face" style="font-size: 22px;"></i>Interventions</a></li>
+                    <li><a href="/sdisweb/ServletGrade/lister"><i class="zmdi zmdi-graduation-cap" style="font-size: 22px;"></i>Grade</a></li>
+                    <li><a href="/sdisweb/ServletCaserne/lister"><i class="zmdi zmdi-home" style="font-size: 22px;"></i>Caserne</a></li>
+                    <li><a href="/sdisweb/ServletFonction/lister"><i class="zmdi zmdi-info" style="font-size: 22px;"></i>Fonction</a></li>
+                    <li><a href="/sdisweb/ServletTypeVehicule/lister"><i class="zmdi zmdi-wrench" style="font-size: 22px;"></i>Type Véhicule</a></li>
+                    <li><a href="/sdisweb/ServletSurgrade/lister"><i class="zmdi zmdi-toll" style="font-size: 22px;"></i>Surgrade</a></li>
                 </ul>
             </nav>
         </div>
@@ -309,7 +334,7 @@ nav {
                         <img src="https://i.ibb.co/8jL1m1v/inconnu.jpg" alt="John Doe" />
                     </div>
                     <div class="content">
-                        <a>john doe</a>
+                        <a>ROBIN Alexis</a>
                     </div>
                 </div>
                 <div class="sub-menu" id="subMenu">
