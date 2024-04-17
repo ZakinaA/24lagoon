@@ -41,7 +41,7 @@
         align-items: flex-start;
         position: relative;
         width: 440px;
-        height: 200px;
+        height: 190px;
         margin-right: 20px;
         margin-bottom: 20px;
         padding: 20px;
@@ -70,7 +70,7 @@
         margin-top: 20px;
         font-size: 14px;
         color: #666;
-        font-weight: 100;
+        font-weight: 400;
     }
 
     .button {
@@ -85,7 +85,7 @@
     }
    
     h1 {
-        font-weight: 100;
+        font-weight: 400;
     }
 
 </style>
