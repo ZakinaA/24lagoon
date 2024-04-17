@@ -39,7 +39,7 @@
             align-items: flex-start;
             position: relative;
             width: 440px;
-            height: 200px;
+            height: 210px;
             margin-right: 20px;
             margin-bottom: 20px;
             padding: 20px;
@@ -77,7 +77,7 @@
             margin-top: -5px;
             font-size: 14px;
             color: #666;
-            font-weight: 200;
+            font-weight: 400;
         }
 
         p {
@@ -87,13 +87,13 @@
         }
 
         .titrecarac {
-            font-weight: bold;
+            font-weight: 600;
             font-size: 14px;
         }
 
         .paragraphe {
-            margin-left: -55px;
-            margin-top: 18px;
+            margin-left: -65px;
+            margin-top: 25px;
         }
 
         .date {
@@ -102,7 +102,7 @@
 
         .paraend {
             margin-top: 28px;
-            margin-left: -55px;
+            margin-left: -65px;
             display: flex;
             align-items: center;
         }
@@ -112,13 +112,13 @@
         }
 
         .blue {
-            font-weight: 100;
+            font-weight: 300;
             text-decoration: underline;
             color: #4272d7;
         }
 
         .green {
-            font-weight: 100;
+            font-weight: 300;
             text-decoration: underline;
             color: green;
         }
@@ -132,7 +132,7 @@
             right: 10px;
         }
         h1 {
-            font-weight: 100;
+            font-weight: 400;
         }
         
              

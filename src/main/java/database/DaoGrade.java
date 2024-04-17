@@ -7,6 +7,7 @@ package database;
 import static database.DaoGrade.requeteSql;
 import static database.DaoGrade.resultatRequete;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,7 +29,7 @@ public class DaoGrade {
         
         ArrayList<Grade> lesGrades = new ArrayList<Grade>();
         try{
-            requeteSql = cnx.prepareStatement("SELECT gra_id, gra_libelle, sur_libelle FROM grade, surgrade WHERE gra_surgrade_id = sur_id");
+            requeteSql = cnx.prepareStatement("SELECT gra_id, gra_libelle, gra_description, sur_libelle FROM grade, surgrade WHERE gra_surgrade_id = sur_id");
             resultatRequete = requeteSql.executeQuery();
             
             while (resultatRequete.next()){
@@ -36,6 +37,8 @@ public class DaoGrade {
                 Grade g = new Grade();
                     g.setId(resultatRequete.getInt("gra_id"));
                     g.setLibelle(resultatRequete.getString("gra_libelle"));
+                    g.setDescription(resultatRequete.getString("gra_description"));
+
                 Surgrade s = new Surgrade();
                     s.setLibelle(resultatRequete.getString("sur_libelle"));
                 
@@ -55,20 +58,25 @@ public class DaoGrade {
      public static ArrayList<Pompier> getLesPompiersGradeById(Connection cnx, int idGrade){
          ArrayList<Pompier> lesPompiers = new ArrayList<Pompier>();
             try{
-                requeteSql = cnx.prepareStatement("SELECT pom_id, pom_nom, pom_prenom " +
-                             "FROM pompier " +
-                             "WHERE pom_grade_id = ?");
+                requeteSql = cnx.prepareStatement("SELECT pom_id, pom_bip, pom_nom, pom_prenom, pom_dateNaiss, pom_indice " +
+                                            "FROM pompier " +
+                                            "WHERE pom_grade_id = ?");
                 requeteSql.setInt(1, idGrade);
                 resultatRequete = requeteSql.executeQuery();
 
-                while (resultatRequete.next()){
+                while (resultatRequete.next()) {
                     Pompier p = new Pompier();
                     p.setId(resultatRequete.getInt("pom_id"));
+                    p.setBip(resultatRequete.getString("pom_bip"));
                     p.setNom(resultatRequete.getString("pom_nom"));
                     p.setPrenom(resultatRequete.getString("pom_prenom"));
+                    Date dateNaiss = resultatRequete.getDate("pom_dateNaiss");
+                    p.setDateNaiss(dateNaiss.toLocalDate());                    
+                    p.setIndice(resultatRequete.getInt("pom_indice"));
+                    
                     lesPompiers.add(p); // Ajout du pompier à la liste
+                    }
                 }
-            }
             catch (SQLException e){
                 e.printStackTrace();
                 System.out.println("La requête de getLesPompiersGradeById a généré une erreur");
@@ -112,10 +120,11 @@ public class DaoGrade {
             // id (clé primaire de la table client) est en auto_increment,donc on ne renseigne pas cette valeur
             // la paramètre RETURN_GENERATED_KEYS est ajouté à la requête afin de pouvoir récupérer l'id généré par la bdd (voir ci-dessous)
             // supprimer ce paramètre en cas de requête sans auto_increment.
-            requeteSql=connection.prepareStatement("INSERT INTO grade ( gra_libelle, gra_surgrade_id)\n" +
-                    "VALUES (?,?)", PreparedStatement.RETURN_GENERATED_KEYS );
+            requeteSql=connection.prepareStatement("INSERT INTO grade ( gra_libelle, gra_description, gra_surgrade_id)\n" +
+                    "VALUES (?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS );
             requeteSql.setString(1, g.getLibelle());
-            requeteSql.setInt(2, g.getUnSurgrade().getId());
+            requeteSql.setString(2, g.getDescription());
+            requeteSql.setInt(3, g.getUnSurgrade().getId());
 
 
            /* Exécution de la requête */

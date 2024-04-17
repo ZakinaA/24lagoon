@@ -19,6 +19,7 @@ $<%@ include file="PompierPage.jsp" %>
     <style>
         
         .table {
+            box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.103);
             width: 100%;
             max-width: 100%;
             margin-bottom: 1rem;
@@ -65,7 +66,7 @@ $<%@ include file="PompierPage.jsp" %>
         }
         
         .titre {
-            font-weight: 100;
+            font-weight: 400;
             margin-left: 35px;
         }
      

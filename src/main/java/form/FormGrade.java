@@ -62,6 +62,7 @@ public class FormGrade {
          
         
         String libelle = getDataForm( request, "libelle" );
+        String description = getDataForm (request, "description");
       
         int idSurgrade = Integer.parseInt((String)getDataForm( request, "idSurgrade" ));
 
@@ -73,6 +74,7 @@ public class FormGrade {
             setErreur( "nom", e.getMessage() );
         }
         g.setLibelle(libelle);
+        g.setDescription(description);
 
         if ( erreurs.isEmpty() ) {
             resultat = "Succès de l'ajout.";

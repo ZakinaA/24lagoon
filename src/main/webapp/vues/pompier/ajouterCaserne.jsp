@@ -9,38 +9,118 @@
 <%@page import="form.FormCaserne"%>
 <%@page import="model.Pompier"%>
 <%@page import="model.Intervention"%>
+<%@ include file="PompierPage.jsp" %>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SDIS WEB</title>
     </head>
+    
+    <style>
+body {
+    overflow-y: hidden;
+}
+    
+.custom-form {
+    height: 400px;
+    top: 100px;
+    background-color: white;
+    width: 600px; 
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    position: relative; 
+
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 17px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.form-control {
+    width: 100%; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.btn {
+    margin-top: 20px;
+    padding: 13px 0; 
+    background-color: #425d97;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.card-header {
+    width: 94%;
+    padding: .75rem 1.25rem;
+    background-color: rgba(0, 0, 0, .03);
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+}
+
+.deplacement {
+    margin-top: 30px;
+}
+
+#immatriculation {
+    text-transform: uppercase;
+}
+
+input {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+</style>
     <body>
-        <h1>NOUVEAU CASERNE</h1>
-        
+    <div class="main-content">
+        <div class="custom-form">
             <%
                 FormCaserne form = (FormCaserne)request.getAttribute("form");
             %>
         
-        <form class="form-inline" action="ajouter" method="POST">
-              
-                <label for="nom">NOM : </label>
-                <input id="nom" type="text" name="nom"  size="30" maxlength="30">
-                </br>
-                
-                <label for="rue">RUE : </label>
-                <input id="rue"  type="text"  name="rue" size="30" maxlength="30">      
-                 </br>
-                 
-                 <label for="copos">CODE POSTAL : </label>
-                 <input id="copos" type="number" name="copos" pattern="[0-9]{1,2,3,4,5}">
-                 </br>
-                 
-                <label for="ville"> VILLE : </label>
-                <input id="ville" type="text" name="ville" >
-                 </br>
-                 
-            <input type="submit" name="valider" id="valider" value="Valider"/>
-            </form>
+            <form class="form-inline" action="ajouter" method="POST">
+                <div class="card-header">Caserne</div>
+                <div class="deplacement">
+                <label for="nom">Nom</label>
+                <input id="nom" type="text" name="nom"  size="30" maxlength="30" class="form-control">
+                <br>
 
-    </body>
+                <label for="rue">Rue</label>
+                <input id="rue"  type="text"  name="rue" size="30" maxlength="30" class="form-control">      
+                <br>
+
+                <label for="copos">Code Postal</label>
+                <input id="copos" type="number" name="copos" pattern="[0-9]{1,2,3,4,5}" class="form-control">
+                <br>
+
+                <label for="ville">Ville</label>
+                <input id="ville" type="text" name="ville" class="form-control">
+                <br>
+
+                <input type="submit" name="valider" id="valider" value="Valider" class="btn">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
 </html>
