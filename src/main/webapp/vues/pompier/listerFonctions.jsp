@@ -118,7 +118,7 @@ p {
                 <div class="main-content">
                     <h1 class="titreentete">Fonctions</h1>
                     <div class="float">
-                        <a class="button" href="/sdisweb/ServletFonction/ajouter" style="display: inline;">+ &nbsp Ajouter<a>
+                        <a class="button" href="../ServletFonction/ajouter" style="display: inline;">+ &nbsp Ajouter<a>
                     </div>
                     <div class="container">
                         <% for (Fonction f : lesFonctions) { %>

@@ -316,15 +316,15 @@ nav {
         <div class="navcontent">
             <nav>
                 <ul>
-                    <li><a href="/sdisweb/ServletPompier/lister"><i class="zmdi zmdi-fire" style="font-size: 22px;"></i>Pompiers</a></li>
-                    <li><a href="/sdisweb/ServletVehicule/lister"><i class="zmdi zmdi-car" style="font-size: 22px;"></i>Véhicules</span></a></li>
-                    <li><a href="/sdisweb/ServletSituation/lister"><i class="zmdi zmdi-directions" style="font-size: 22px;"></i>Situations</a></li>
-                    <li><a href="/sdisweb/ServletIntervention/lister"><i class="zmdi zmdi-face" style="font-size: 22px;"></i>Interventions</a></li>
-                    <li><a href="/sdisweb/ServletGrade/lister"><i class="zmdi zmdi-graduation-cap" style="font-size: 22px;"></i>Grade</a></li>
-                    <li><a href="/sdisweb/ServletCaserne/lister"><i class="zmdi zmdi-home" style="font-size: 22px;"></i>Caserne</a></li>
-                    <li><a href="/sdisweb/ServletFonction/lister"><i class="zmdi zmdi-info" style="font-size: 22px;"></i>Fonction</a></li>
-                    <li><a href="/sdisweb/ServletTypeVehicule/lister"><i class="zmdi zmdi-wrench" style="font-size: 22px;"></i>Type Véhicule</a></li>
-                    <li><a href="/sdisweb/ServletSurgrade/lister"><i class="zmdi zmdi-toll" style="font-size: 22px;"></i>Surgrade</a></li>
+                    <li><a href="../ServletPompier/lister"><i class="zmdi zmdi-fire" style="font-size: 22px;"></i>Pompiers</a></li>
+                    <li><a href="../ServletVehicule/lister"><i class="zmdi zmdi-car" style="font-size: 22px;"></i>Véhicules</span></a></li>
+                    <li><a href="../ServletSituation/lister"><i class="zmdi zmdi-directions" style="font-size: 22px;"></i>Situations</a></li>
+                    <li><a href="../ServletIntervention/lister"><i class="zmdi zmdi-face" style="font-size: 22px;"></i>Interventions</a></li>
+                    <li><a href="../ServletGrade/lister"><i class="zmdi zmdi-graduation-cap" style="font-size: 22px;"></i>Grade</a></li>
+                    <li><a href="../ServletCaserne/lister"><i class="zmdi zmdi-home" style="font-size: 22px;"></i>Caserne</a></li>
+                    <li><a href="../ServletFonction/lister"><i class="zmdi zmdi-info" style="font-size: 22px;"></i>Fonction</a></li>
+                    <li><a href="../ServletTypeVehicule/lister"><i class="zmdi zmdi-wrench" style="font-size: 22px;"></i>Type Véhicule</a></li>
+                    <li><a href="../ServletSurgrade/lister"><i class="zmdi zmdi-toll" style="font-size: 22px;"></i>Surgrade</a></li>
                 </ul>
             </nav>
         </div>

@@ -213,7 +213,7 @@ h1 {
                 <option value="anciennes" <% if ("anciennes".equals(request.getParameter("tri"))) out.print("selected"); %>>Croissant</option>
             </select>
         </form>
-        <a class="button" href="/sdisweb/ServletIntervention/ajouter" style="display: inline;">+ &nbsp Ajouter<a>
+        <a class="button" href="../ServletIntervention/ajouter" style="display: inline;">+ &nbsp Ajouter<a>
     </div>
        
         <table class="table">  
