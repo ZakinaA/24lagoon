@@ -73,10 +73,11 @@ public class ServletSurgrade extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-                 String url = request.getRequestURI();  
-
+                 String url = request.getRequestURI().toLowerCase();
         
-                if(url.equals("/sdisweb/ServletSurgrade/lister"))
+                 String[] args = url.split("/");
+        
+                if(args[3].equals("lister"))
                 {              
                     ArrayList<Surgrade> lesSurgrades = DaoSurgrade.getLesSurgrades(cnx);
                     request.setAttribute("pLesSurgrades", lesSurgrades);
@@ -84,7 +85,7 @@ public class ServletSurgrade extends HttpServlet {
                    getServletContext().getRequestDispatcher("/vues/pompier/listerSurgrade.jsp").forward(request, response);
                 }
                 
-                if(url.equals("/sdisweb/ServletSurgrade/ajouter"))
+                if(args[3].equals("ajouter"))
             {       
                 this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterSurgrade.jsp" ).forward( request, response );
                 return;

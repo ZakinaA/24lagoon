@@ -78,10 +78,12 @@ public class ServletGrade extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             
-        String url = request.getRequestURI();  
+        String url = request.getRequestURI().toLowerCase();
+        
+        String[] args = url.split("/");
 
                  
-        if(url.equals("/sdisweb/ServletGrade/lister"))
+        if(args[3].equals("lister"))
         {              
             ArrayList<Grade> lesGrades = DaoGrade.getLesGrades(cnx);
             request.setAttribute("gLesGrades", lesGrades);
@@ -89,7 +91,7 @@ public class ServletGrade extends HttpServlet {
             getServletContext().getRequestDispatcher("/vues/pompier/listerGrade.jsp").forward(request, response);
         }
         
-        if(url.equals("/sdisweb/ServletGrade/consulter")) {  
+        if(args[3].equals("consulter")) {  
             String idGradeParam = request.getParameter("idGrade");
             
             if (idGradeParam != null) {
@@ -104,7 +106,7 @@ public class ServletGrade extends HttpServlet {
                 getServletContext().getRequestDispatcher("/vues/pompier/consulterGrade.jsp").forward(request, response);             
                 } 
             }
-        if(url.equals("/sdisweb/ServletGrade/ajouter"))
+        if(args[3].equals("ajouter"))
         {                   
             ArrayList<Surgrade> lesSurgrades = DaoSurgrade.getLesSurgrades(cnx);
             request.setAttribute("pLesSurgrades", lesSurgrades);

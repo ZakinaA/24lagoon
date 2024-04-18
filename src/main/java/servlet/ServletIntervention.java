@@ -76,9 +76,11 @@ public class ServletIntervention extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String url = request.getRequestURI();  
+        String url = request.getRequestURI().toLowerCase();
+        
+        String[] args = url.split("/");
 
-        if(url.equals("/sdisweb/ServletIntervention/lister"))
+        if(args[3].equals("lister"))
         {              
             ArrayList<Intervention> lesInterventions = DaoIntervention.getLesInterventions(cnx);
             String tri = request.getParameter("tri");
@@ -94,7 +96,7 @@ public class ServletIntervention extends HttpServlet {
             getServletContext().getRequestDispatcher("/vues/pompier/listerIntervention.jsp").forward(request, response); 
         }
         
-        if(url.equals("/sdisweb/ServletIntervention/consulter")) {  
+        if(args[3].equals("consulter")) {  
 
             int idIntervention = Integer.parseInt((String)request.getParameter("idIntervention"));
             System.out.println( "intervention à afficher = " + idIntervention);

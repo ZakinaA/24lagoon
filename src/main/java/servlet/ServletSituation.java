@@ -73,10 +73,13 @@ public class ServletSituation extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String url = request.getRequestURI();  
+         String url = request.getRequestURI().toLowerCase();
+        
+        String[] args = url.split("/");
+
 
                  
-        if(url.equals("/sdisweb/ServletSituation/lister"))
+        if(args[3].equals("lister"))
         {              
             ArrayList<Situation> lesSituations = DaoSituation.getLesSituations(cnx);
             request.setAttribute("sLesSituations", lesSituations);
@@ -84,7 +87,7 @@ public class ServletSituation extends HttpServlet {
             getServletContext().getRequestDispatcher("/vues/pompier/listerSituation.jsp").forward(request, response);
         }
         
-        if(url.equals("/sdisweb/ServletSituation/consulter"))
+        if(args[3].equals("consulter"))
         {              
             int idSituation = Integer.parseInt((String)request.getParameter("idSituation"));
 
