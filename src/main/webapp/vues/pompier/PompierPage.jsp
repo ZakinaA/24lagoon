@@ -288,6 +288,11 @@ nav {
         function toggleSubMenu() {
             subMenu.classList.toggle("show");
         }
+        
+        accountWrap.addEventListener("click", function(event){
+            event.stopPropagation();
+            toggleSubMenu();
+        });
 
         // Ajouter un écouteur d'événements pour fermer le sous-menu en cliquant à l'extérieur
         document.addEventListener("click", function(event) {
