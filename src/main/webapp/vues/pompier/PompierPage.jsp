@@ -352,7 +352,7 @@ nav {
                         <li class="bordure">
                             <div class="link-container">
                                 <i class="zmdi zmdi-power"></i>
-                                <a href="#">Déconnecter</a>
+                                <a href="${pageContext.request.contextPath}/logout">Déconnecter</a>
                             </div>
                         </li>             
                     </ul>
