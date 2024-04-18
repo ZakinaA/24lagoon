@@ -78,10 +78,11 @@ public class ServletFonction extends HttpServlet {
             throws ServletException, IOException {
       
         
-        String url = request.getRequestURI();  
-
-                 
-        if(url.equals("/sdisweb/ServletFonction/lister"))
+        String url = request.getRequestURI().toLowerCase();
+        
+        String[] args = url.split("/");
+                
+        if(args[3].equals("lister"))
         {              
             ArrayList<Fonction> lesFonctions = DaoFonction.getLesFonctions(cnx);
             request.setAttribute("fLesFonctions", lesFonctions);
@@ -89,7 +90,7 @@ public class ServletFonction extends HttpServlet {
            getServletContext().getRequestDispatcher("/vues/pompier/listerFonctions.jsp").forward(request, response);
         }
         
-        if(url.equals("/sdisweb/ServletFonction/consulter")) {  
+        if(args[3].equals("consulter")) {  
             String idFonctionParam = request.getParameter("idFonction");
             
             if (idFonctionParam != null) {
@@ -105,7 +106,7 @@ public class ServletFonction extends HttpServlet {
                 } 
             }
         
-         if(url.equals("/sdisweb/ServletFonction/ajouter"))
+         if(args[3].equals("ajouter"))
         {       
             this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterFonction.jsp" ).forward( request, response );
         }

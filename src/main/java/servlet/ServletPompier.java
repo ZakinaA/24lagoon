@@ -82,10 +82,12 @@ public class ServletPompier extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-         String url = request.getRequestURI();  
+        String url = request.getRequestURI().toLowerCase();
+        
+        String[] args = url.split("/");
        
         // Récup et affichage les eleves 
-        if(url.equals("/sdisweb/ServletPompier/lister"))
+        if(args[3].equals("lister"))
         {              
             ArrayList<Pompier> lesPompiers = DaoPompier.getLesPompiers(cnx);
             request.setAttribute("pLesPompiers", lesPompiers);
@@ -94,7 +96,7 @@ public class ServletPompier extends HttpServlet {
         }
         
          // Récup et affichage des clients interessés par une certaine catégorie de ventes
-        if(url.equals("/sdisweb/ServletPompier/consulter"))
+        if(args[3].equals("consulter"))
         {  
             // tout paramètre récupéré de la request Http est de type String
             // Il est donc nécessaire de caster le paramètre idPompier en int
@@ -115,7 +117,7 @@ public class ServletPompier extends HttpServlet {
            
         }
         
-        if(url.equals("/sdisweb/ServletPompier/ajouter"))
+        if(args[3].equals("ajouter"))
         {                   
             ArrayList<Caserne> lesCasernes = DaoCaserne.getLesCasernes(cnx);
             request.setAttribute("pLesCasernes", lesCasernes);

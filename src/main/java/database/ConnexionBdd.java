@@ -40,6 +40,64 @@ public class ConnexionBdd {
         return connection ;
      
     }
+    
+    public static boolean verifierAuthentification(String email, String password){
+
+        Connection conn =null;
+        Statement stmt =null;
+        ResultSet rs =null;
+        boolean authentifie = false;
+        
+        try{
+            conn = ouvrirConnexion();
+            stmt = conn.createStatement();
+            String sql = "SELECT COUNT(*) FROM compte WHERE com_email = '" + email + "' AND com_password = '" + password + "'";
+            rs = stmt.executeQuery(sql);
+            
+            if(rs.next()){
+                int count = rs.getInt(1);
+                authentifie = count == 1;
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            fermerConnexion(rs);
+            fermerConnexion(stmt);
+            fermerConnexion(conn);
+        }
+        return authentifie;
+    }
+    
+    public static String recuperNomPrenom(String email) {
+    Connection conn = null;
+    Statement stmt = null;
+    ResultSet rs = null;
+    String nomPrenomPompier = "";
+
+    try {
+        conn = ouvrirConnexion();
+        stmt = conn.createStatement();
+        String sql = "SELECT pom_nom, pom_prenom FROM compte "
+                   + "JOIN pompier ON com_id = pom_compte_id "
+                   + "WHERE com_email = '" + email + "'";
+        rs = stmt.executeQuery(sql);
+
+        if (rs.next()) {
+            String nom = rs.getString("pom_nom");
+            String prenom = rs.getString("pom_prenom");
+            nomPrenomPompier = nom + " " + prenom;
+        }
+    } catch (SQLException e) {
+        // Gestion de l'exception
+        e.printStackTrace();
+    } finally {
+        fermerConnexion(rs);
+        fermerConnexion(stmt);
+        fermerConnexion(conn);
+    }
+    return nomPrenomPompier;
+}
+
    
     // Méthode de fermeture du resultset
     public static void fermerConnexion(ResultSet rs)

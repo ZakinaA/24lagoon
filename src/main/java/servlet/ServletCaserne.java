@@ -76,10 +76,12 @@ public class ServletCaserne extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String url = request.getRequestURI();  
+        String url = request.getRequestURI().toLowerCase();
+        
+        String[] args = url.split("/");
 
                  
-        if(url.equals("/sdisweb/ServletCaserne/lister"))
+        if(args[3].equals("lister"))
         {              
             ArrayList<Caserne> lesCasernes = DaoCaserne.getLesCasernes(cnx);
             request.setAttribute("clesCasernes", lesCasernes);
@@ -87,7 +89,7 @@ public class ServletCaserne extends HttpServlet {
            getServletContext().getRequestDispatcher("/vues/pompier/listerCasernes.jsp").forward(request, response);
         }
         
-        if(url.equals("/sdisweb/ServletCaserne/consulter")) {  
+        if(args[3].equals("consulter")) {  
             String idCaserneParam = request.getParameter("idCaserne");
             
             if (idCaserneParam != null) {
@@ -105,7 +107,7 @@ public class ServletCaserne extends HttpServlet {
                 getServletContext().getRequestDispatcher("/vues/pompier/consulterCasernePompier.jsp").forward(request, response);             
                 } 
             }
-        if(url.equals("/sdisweb/ServletCaserne/ajouter"))
+        if(args[3].equals("ajouter"))
         {       
             this.getServletContext().getRequestDispatcher("/vues/pompier/ajouterCaserne.jsp" ).forward( request, response );
         }

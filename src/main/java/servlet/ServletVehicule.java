@@ -79,10 +79,12 @@ public class ServletVehicule extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String url = request.getRequestURI();  
+        String url = request.getRequestURI().toLowerCase();
+        
+        String[] args = url.split("/");
 
                  
-        if(url.equals("/sdisweb/ServletVehicule/lister"))
+        if(args[3].equals("lister"))
         {              
             ArrayList<Vehicule> lesVehicules = DaoVehicule.getLesVehicules(cnx);
             request.setAttribute("vLesVehicules", lesVehicules);
@@ -90,7 +92,7 @@ public class ServletVehicule extends HttpServlet {
             getServletContext().getRequestDispatcher("/vues/pompier/listerVehicule.jsp").forward(request, response);
         }
         
-        if(url.equals("/sdisweb/ServletVehicule/consulter"))
+        if(args[3].equals("consulter"))
         {              
             int idVehicule = Integer.parseInt((String)request.getParameter("idVehicule"));
 
@@ -100,7 +102,7 @@ public class ServletVehicule extends HttpServlet {
             getServletContext().getRequestDispatcher("/vues/pompier/consulterVehicule.jsp").forward(request, response);
         }
         
-        if(url.equals("/sdisweb/ServletVehicule/ajouter"))
+        if(args[3].equals("ajouter"))
         {                   
             ArrayList<TypeVehicule> LesTypeVehicules = DaoTypeVehicule.getLesTypesVehicules(cnx);
             request.setAttribute("vLesTypesVehicules", LesTypeVehicules);
