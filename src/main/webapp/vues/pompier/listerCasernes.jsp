@@ -179,7 +179,7 @@ h1 {
     <div class="main-content">
         <h1>Casernes</h1>
         <div class="float">
-            <a class="button" href="/sdisweb/ServletCaserne/ajouter" style="display: inline;">+ &nbsp Ajouter<a>
+            <a class="button" href="../ServletCaserne/ajouter" style="display: inline;">+ &nbsp Ajouter<a>
         </div>
 
         <table class="table">  
