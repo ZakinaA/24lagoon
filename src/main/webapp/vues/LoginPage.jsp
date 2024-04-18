@@ -85,7 +85,7 @@ button {
             <div class="img-container">
               <img class="img" src="https://i.ibb.co/XLJcLBh/Logo.png" alt="logo"/>
             </div>
-            <form action="#" method="POST">
+            <form action="connexion" method="POST">
               <div class="form-group">
                 <label for="email">Adresse Email</label>
                 <input type="email" id="email" name="email" placeholder="Email" required>
