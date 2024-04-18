@@ -127,12 +127,12 @@
         <div class="main-content">
             <h1 class="titre">Pompiers</h1>
             <div class="float">
-                <a class="button" href="/sdisweb/ServletPompier/ajouter" style="display: inline;">+ &nbsp Ajouter<a>
+                <a class="button" href="../ServletPompier/ajouter" style="display: inline;">+ &nbsp Ajouter<a>
             </div>
             <% if (lesPompiers != null && !lesPompiers.isEmpty()) { %>
                 <div class="container">
                     <% for (Pompier p : lesPompiers) { %>
-                        <div class="card" onclick="window.location.href='/sdisweb/ServletPompier/consulter?idPompier=<%= p.getId() %>'">
+                        <div class="card" onclick="window.location.href='../ServletPompier/consulter?idPompier=<%= p.getId() %>'">
                             <img class="imgpompier" src="https://i.ibb.co/8jL1m1v/inconnu.jpg" alt="photo"/>
                             <div class="intro">
                                 <h1 class="nom"><%= p.getNom() %> <%= p.getPrenom() %></h1>

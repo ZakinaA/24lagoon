@@ -103,7 +103,7 @@
                             <div class="text">
                                 <h1 class="titrecard"><%= s.getLibelle() %></h1>
                                 <p class="sous-titre"><%= s.getDescription() %></p>
-                                <a href="/sdisweb/ServletSituation/consulter?idSituation=<%= s.getId() %>" class="button">Voir les interventions</a>
+                                <a href="../ServletSituation/consulter?idSituation=<%= s.getId() %>" class="button">Voir les interventions</a>
                             </div>
                         </div>
                     <%

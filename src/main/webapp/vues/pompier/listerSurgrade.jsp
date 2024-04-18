@@ -108,7 +108,7 @@ p {
                 <div class="main-content">
                     <h1 class="titreentete">Surgrades</h1>
                     <div class="float">
-                        <a class="button" href="/sdisweb/ServletSurgrade/ajouter" style="display: inline;">+ &nbsp Ajouter<a>
+                        <a class="button" href="../ServletSurgrade/ajouter" style="display: inline;">+ &nbsp Ajouter<a>
                     </div>
                     <div class="container">
                         <% for (Surgrade s : lesSurgrades) { %>

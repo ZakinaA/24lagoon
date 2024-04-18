@@ -163,7 +163,7 @@
          
             <h1>Véhicules</h1>
             <div class="float">
-                <a class="button" href="/sdisweb/ServletVehicule/ajouter" style="display: inline;">+ &nbsp Ajouter<a>
+                <a class="button" href="../ServletVehicule/ajouter" style="display: inline;">+ &nbsp Ajouter<a>
             </div>
             <div class="container">
                 <% for (Vehicule v : lesVehicules) { %>
@@ -184,7 +184,7 @@
                             <h1 class="date"><span class="green">Date Revision</span> :</h1>
                             <p class="monter">&nbsp;<%= v.getDateRevision() %></p>
                         </div>
-                        <a href="/sdisweb/ServletVehicule/consulter?idVehicule=<%= v.getId() %>" class="zmdi zmdi-arrow-forward arrow"></a>
+                        <a href="../ServletVehicule/consulter?idVehicule=<%= v.getId() %>" class="zmdi zmdi-arrow-forward arrow"></a>
                     </div>
                 </div>
                 <% } %>
