@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Pompier"%>
+<%@ page import="database.ConnexionBdd" %>
 
 
 <!DOCTYPE html>
@@ -304,6 +305,10 @@ nav {
 </script>
 
 <body>
+    <%
+        String email = (String) session.getAttribute("utilisateurConnecte");
+        String nomPrenomPompier = ConnexionBdd.recuperNomPrenom(email);
+    %>
     <div class="sidebar">
         <div class="logo">
             <img src="https://i.ibb.co/XLJcLBh/Logo.png" alt="logo"/>
@@ -333,7 +338,7 @@ nav {
                         <img src="https://i.ibb.co/8jL1m1v/inconnu.jpg" alt="John Doe" />
                     </div>
                     <div class="content">
-                        <a>ROBIN Alexis</a>
+                        <a><%= nomPrenomPompier %></a>
                     </div>
                 </div>
                 <div class="sub-menu" id="subMenu">
